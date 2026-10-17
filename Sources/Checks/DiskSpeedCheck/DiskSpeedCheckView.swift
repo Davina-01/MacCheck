@@ -40,10 +40,10 @@ final class DiskSpeedCheckModel: ObservableObject {
             defer { cont.finish() }
             do {
                 let w = try DiskSpeedCheckModel.measure(path: path, total: total, chunk: chunk, writing: true) {
-                    cont.yield(("写入中", $0))
+                    cont.yield((L("写入中"), $0))
                 }
                 let r = try DiskSpeedCheckModel.measure(path: path, total: total, chunk: chunk, writing: false) {
-                    cont.yield(("读取中", $0))
+                    cont.yield((L("读取中"), $0))
                 }
                 try? FileManager.default.removeItem(atPath: path)
                 return .success((w, r))
@@ -76,8 +76,8 @@ final class DiskSpeedCheckModel: ObservableObject {
         case open, io
         var description: String {
             switch self {
-            case .open: return "无法创建测试文件（磁盘可能已满或无写入权限）"
-            case .io: return "读写过程中出错"
+            case .open: return L("无法创建测试文件（磁盘可能已满或无写入权限）")
+            case .io: return L("读写过程中出错")
             }
         }
     }
@@ -114,16 +114,16 @@ final class DiskSpeedCheckModel: ObservableObject {
         let w = writeMBps ?? 0, r = readMBps ?? 0
         let low = (w > 0 && w < 200) || (r > 0 && r < 200)
         let details: [String: String] = [
-            "顺序写入": String(format: "%.0f MB/s", w),
-            "顺序读取": String(format: "%.0f MB/s", r),
-            "测试数据量": "1 GB",
-            "读写方式": "F_NOCACHE 绕缓存（写入含 fsync，为真实同步盘速）",
+            L("顺序写入"): String(format: "%.0f MB/s", w),
+            L("顺序读取"): String(format: "%.0f MB/s", r),
+            L("测试数据量"): "1 GB",
+            L("读写方式"): L("F_NOCACHE 绕缓存（写入含 fsync，为真实同步盘速）"),
         ]
         return CheckResult(
             id: "diskSpeed",
-            title: "硬盘测速",
+            title: L("硬盘测速"),
             status: low ? .warning : .pass,
-            summary: String(format: "写入 %.0f MB/s · 读取 %.0f MB/s", w, r) + (low ? " —— 速度偏低，可能是外置慢速盘或硬盘异常" : " —— 读写速度正常"),
+            summary: String(format: L("写入 %.0f MB/s · 读取 %.0f MB/s"), w, r) + (low ? L(" —— 速度偏低，可能是外置慢速盘或硬盘异常") : L(" —— 读写速度正常")),
             rawDetails: details
         )
     }
@@ -137,14 +137,14 @@ struct DiskSpeedCheckView: View {
         VStack(alignment: .leading, spacing: DS.Spacing.lg) {
             CheckHeader(
                 icon: "speedometer",
-                title: "硬盘读写测速",
-                subtitle: "顺序写入并读取 1GB 测量真实读写速度（绕过系统缓存）。可发现外置慢速盘、伪容量盘或性能异常。"
+                title: L("硬盘读写测速"),
+                subtitle: L("顺序写入并读取 1GB 测量真实读写速度（绕过系统缓存）。可发现外置慢速盘、伪容量盘或性能异常。")
             )
 
             Card {
                 HStack(spacing: DS.Spacing.xl) {
-                    speedStat(title: "顺序写入", value: model.writeMBps)
-                    speedStat(title: "顺序读取", value: model.readMBps)
+                    speedStat(title: L("顺序写入"), value: model.writeMBps)
+                    speedStat(title: L("顺序读取"), value: model.readMBps)
                     Spacer()
                 }
                 if model.isRunning {
@@ -163,19 +163,19 @@ struct DiskSpeedCheckView: View {
 
             HStack(spacing: DS.Spacing.md) {
                 if model.isRunning {
-                    Button("停止") { model.cancel() }.buttonStyle(.bordered)
+                    Button(L("停止")) { model.cancel() }.buttonStyle(.bordered)
                 } else {
-                    Button(model.finished ? "重新测速" : "开始测速") { model.start() }
+                    Button(model.finished ? L("重新测速") : L("开始测速")) { model.start() }
                         .buttonStyle(.borderedProminent)
                     if model.finished {
-                        Button("保存结果") { onComplete(model.buildResult()) }
+                        Button(L("保存结果")) { onComplete(model.buildResult()) }
                             .buttonStyle(.bordered)
                     }
                 }
             }
         }
         .padding(DS.Spacing.xl)
-        .checkPane("硬盘测速")
+        .checkPane(L("硬盘测速"))
         .onDisappear { model.cancel() }
     }
 

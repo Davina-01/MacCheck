@@ -9,10 +9,10 @@ enum AIVerdict: String, Sendable {
 
     var label: String {
         switch self {
-        case .smooth: return "流畅"
-        case .runnable: return "可跑"
-        case .tight: return "勉强"
-        case .no: return "不建议"
+        case .smooth: return L("流畅")
+        case .runnable: return L("可跑")
+        case .tight: return L("勉强")
+        case .no: return L("不建议")
         }
     }
     var rank: Int {
@@ -87,10 +87,12 @@ enum AIModelAdvisor {
     }
 
     /// 权威参考站点，供用户自行深入对比。
-    static let references: [(title: String, subtitle: String, url: String)] = [
-        ("Ollama 模型库", "一行命令本地跑，最易上手", "https://ollama.com/library"),
-        ("LM Studio", "图形界面本地大模型客户端", "https://lmstudio.ai"),
-        ("Hugging Face", "全球最大的开源模型社区", "https://huggingface.co/models"),
-        ("Apple MLX", "Apple Silicon 原生优化推理框架", "https://github.com/ml-explore/mlx"),
-    ]
+    static var references: [(title: String, subtitle: String, url: String)] {
+        [
+            (L("Ollama 模型库"), L("一行命令本地跑，最易上手"), "https://ollama.com/library"),
+            ("LM Studio", L("图形界面本地大模型客户端"), "https://lmstudio.ai"),
+            ("Hugging Face", L("全球最大的开源模型社区"), "https://huggingface.co/models"),
+            ("Apple MLX", L("Apple Silicon 原生优化推理框架"), "https://github.com/ml-explore/mlx"),
+        ]
+    }
 }

@@ -47,6 +47,10 @@
 		F7B0A1CDC89F395A8D1C30E9 /* MicrophoneCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD9082F5C8F6225B946118D /* MicrophoneCheckView.swift */; };
 		FC487407FA904A58A4047AAC /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF7DC1FCD3E942D729DAA93 /* HistoryView.swift */; };
 		FD6309847B9E86676BE40490 /* DetailViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDDCFFD415A9D8E78208E3B /* DetailViews.swift */; };
+		78BB52B1AF82A2839184158E /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DF352A67F7F03AE4EAD517 /* Localization.swift */; };
+		799EC83625FB059059E53049 /* FullscreenTestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59C6CD4D07275E73609CC51 /* FullscreenTestPresenter.swift */; };
+		ABFD2C4FE3ADFE56D7EDB051 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60013C7C7E9B79594E896733 /* Localizable.strings */; };
+		6F28D597BA688DC4DD782B56 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DF93BF6F4329868E40B7723 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +97,13 @@
 		F8619617ED2FC14A2080367B /* MacCheckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacCheckApp.swift; sourceTree = "<group>"; };
 		FBD901320FD3E226550C6D29 /* PerformanceCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceCheckView.swift; sourceTree = "<group>"; };
 		FE40C8ACBC826490673DAA56 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		E0DF352A67F7F03AE4EAD517 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		F59C6CD4D07275E73609CC51 /* FullscreenTestPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenTestPresenter.swift; sourceTree = "<group>"; };
+		071D3A394994080BF66E5D96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EB1436539CFC8F1E4DA6366C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2CAF13D2052C0A496D5AE173 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA01A46D4BFAE39457942E05 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F6FCDF363AB98C60C15FDA92 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -259,6 +270,7 @@
 				8CAB865BC06AD08414C07A1B /* App */,
 				76507759EA407E3CE2BB03C7 /* Checks */,
 				EB6F9C6933685BFE01CCF0FD /* Core */,
+				CAA36DDEFA701D8301E7417B /* Resources */,
 				DF265697E6C42C0DF5676449 /* UI */,
 			);
 			path = Sources;
@@ -303,6 +315,7 @@
 				3228FA565E2EAA5B62D04B81 /* AppModel.swift */,
 				6FAD45F67C273C6884678C90 /* DesignSystem.swift */,
 				4BDDCFFD415A9D8E78208E3B /* DetailViews.swift */,
+				F59C6CD4D07275E73609CC51 /* FullscreenTestPresenter.swift */,
 				0DF7DC1FCD3E942D729DAA93 /* HistoryView.swift */,
 				6AA4A79CB0FC9BF78491623B /* OverviewView.swift */,
 				B2C891817E99096D4F76EF66 /* RootView.swift */,
@@ -319,6 +332,7 @@
 				D68BA5E89EB9180EB7CDC84A /* AIAdvisor */,
 				754DF2CE8D52FEF4F00F3839 /* BatteryService */,
 				9CFDBB3470C433A314F1DBF3 /* HardwareProbe */,
+				2BC3797104D411DDFA1B457B /* Localization */,
 				F0FC66D25F9987B66737D349 /* ManagementService */,
 				A2377E33ABE3E2ADE9911EFC /* NetworkService */,
 				35E05A85554289FEB077C5AF /* PortService */,
@@ -343,6 +357,23 @@
 				CD251515F983FD31A3026BB7 /* TrackpadCheckView.swift */,
 			);
 			path = TrackpadCheck;
+			sourceTree = "<group>";
+		};
+		2BC3797104D411DDFA1B457B /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				E0DF352A67F7F03AE4EAD517 /* Localization.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		CAA36DDEFA701D8301E7417B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3DF93BF6F4329868E40B7723 /* InfoPlist.strings */,
+				60013C7C7E9B79594E896733 /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +417,8 @@
 			knownRegions = (
 				Base,
 				en,
+				fr,
+				"zh-Hans",
 			);
 			mainGroup = 7BADB40D2D87B33B42CBB095;
 			minimizedProjectReferenceProxies = 1;
@@ -405,6 +438,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				21B8CC61B1F663FE8D2ADA23 /* Assets.xcassets in Resources */,
+				6F28D597BA688DC4DD782B56 /* InfoPlist.strings in Resources */,
+				ABFD2C4FE3ADFE56D7EDB051 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +454,8 @@
 				CF7F19DBB6186041782AA86E /* AIModelsView.swift in Sources */,
 				8AAFD72F1BEC7CAF9826046F /* AppModel.swift in Sources */,
 				03EDA0B5E914597A0DA3C7C7 /* AudioCheckView.swift in Sources */,
+				799EC83625FB059059E53049 /* FullscreenTestPresenter.swift in Sources */,
+				78BB52B1AF82A2839184158E /* Localization.swift in Sources */,
 				B87A28D041AF475CEB291DF9 /* BatteryService.swift in Sources */,
 				537DAF0304B333185993A12A /* CameraCheckView.swift in Sources */,
 				30ED452BD40F093D90242A7F /* DesignSystem.swift in Sources */,
@@ -459,11 +496,35 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		3DF93BF6F4329868E40B7723 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CAF13D2052C0A496D5AE173 /* en */,
+				EA01A46D4BFAE39457942E05 /* fr */,
+				F6FCDF363AB98C60C15FDA92 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		60013C7C7E9B79594E896733 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				071D3A394994080BF66E5D96 /* en */,
+				EB1436539CFC8F1E4DA6366C /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		3833BF68A898410D350442DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				ONLY_ACTIVE_ARCH = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

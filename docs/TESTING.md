@@ -5,9 +5,10 @@
 ## 发布前基础验证
 
 ```bash
-xcodebuild -project MacCheck.xcodeproj -scheme MacCheck -configuration Release -derivedDataPath build_release CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO
+xcodebuild -project MacCheck.xcodeproj -scheme MacCheck -configuration Release -destination 'generic/platform=macOS' -derivedDataPath build_release ARCHS="arm64 x86_64" ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO
+lipo -archs build_release/Build/Products/Release/MacCheck.app/Contents/MacOS/MacCheck   # 应输出 x86_64 arm64
 ./scripts/build_and_notarize.sh
-hdiutil verify ~/Desktop/MacCheck-1.2.dmg
+hdiutil verify dist/MacCheck-IM-1.3.0.dmg
 ```
 
 验证项：
@@ -44,6 +45,22 @@ hdiutil verify ~/Desktop/MacCheck-1.2.dmg
 | 性能压测 | 开始短时压力测试 | 无异常卡死或温度/性能红旗 |
 | 硬盘测速 | 开始读写采样 | 读写结果可显示，未出现异常失败 |
 | 接口逐口实测 | 插拔外设并记录 | 目标接口均可识别外设 |
+
+## v1.3.0 新增项目复核
+
+| 项目 | 操作 | 通过标准 |
+| --- | --- | --- |
+| 界面语言 | 设置 → 界面语言，依次切换 简体中文 / English / Français / 跟随系统 | 侧边栏、各页面、检测结论立即换成对应语言，自动重新扫描；导出报告与文件名为对应语言 |
+| 权限提示 | 在英文 / 法文系统下首次打开摄像头、麦克风测试 | 系统权限弹窗文案为对应语言 |
+| 键盘形态 | 分别在 ANSI、ISO（如法语 AZERTY）、JIS 键盘上进入键盘测试 | 自动识别正确形态；回车、§/`、¥、英数/かな 等键位置正确 |
+| 键盘布局 | 切换「键盘布局」为 French、German、Spanish 等 | 键帽字符与实体键盘一致（AZERTY / QWERTZ 等） |
+| 修饰键 | 按住 ⌘ 后松开、切换 caps lock、按 ⌘Tab 切走再切回 | 不再出现误报「疑似卡键」 |
+| 功能行 | 不按 fn 直接按 F1–F12 | 亮度、音量、媒体键也能点亮对应 F 键；被系统拦截的键可点击键帽手动确认 |
+| 屏幕覆盖 | 在带刘海的 MacBook 上进行屏幕测试，按 H 隐藏面板 | 纯色画面覆盖整块屏幕，包括菜单栏与刘海两侧，无未覆盖条带 |
+| 雷雳设备 | 接口逐口实测中插入雷雳 3 / 4 固态硬盘盒 | 事件列表出现「雷雳 / USB4」或「外接磁盘」接入记录 |
+| MDM 绕过 | 在测试机 `/etc/hosts` 中加入 `0.0.0.0 deviceenrollment.apple.com` 后重新扫描（测完删除） | 「安全与锁定」出现红色 MDM 绕过警告 |
+| smartctl | 未安装时查看「存储」；`brew install smartmontools` 后重新扫描 | 未安装时提示安装命令；安装后显示累计写入、已用寿命等 |
+| Intel 机型 | 在 Intel Mac 上打开通用二进制版本 | 可正常启动；性能压测能读到温度（若机型提供） |
 
 ## 隐私与截图
 

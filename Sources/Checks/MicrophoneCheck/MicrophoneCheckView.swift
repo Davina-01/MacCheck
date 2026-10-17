@@ -9,7 +9,7 @@ final class MicrophoneCheckModel: ObservableObject {
     @Published var peak: Double = 0
     @Published var isRunning = false
     @Published var permissionDenied = false
-    @Published var statusText = "准备中…"
+    @Published var statusText = L("准备中…")
     @Published var errorText: String?
 
     private let engine = AVAudioEngine()
@@ -23,7 +23,7 @@ final class MicrophoneCheckModel: ObservableObject {
         case .authorized:
             beginTap()
         case .notDetermined:
-            statusText = "等待麦克风授权…"
+            statusText = L("等待麦克风授权…")
             AVCaptureDevice.requestAccess(for: .audio) { [weak self] granted in
                 Task { @MainActor in
                     guard let self else { return }
@@ -44,8 +44,8 @@ final class MicrophoneCheckModel: ObservableObject {
     private func showPermissionDenied() {
         permissionDenied = true
         isRunning = false
-        statusText = "麦克风权限未开启"
-        errorText = "请在系统设置中允许 MacCheck 访问麦克风，然后重新打开此测试。"
+        statusText = L("麦克风权限未开启")
+        errorText = L("请在系统设置中允许 MacCheck 访问麦克风，然后重新打开此测试。")
     }
 
     func openPrivacySettings() {
@@ -63,8 +63,8 @@ final class MicrophoneCheckModel: ObservableObject {
         let input = engine.inputNode
         let format = input.inputFormat(forBus: 0)
         guard format.channelCount > 0 else {
-            errorText = "未检测到可用的麦克风输入设备。"
-            statusText = "无法启动监听"
+            errorText = L("未检测到可用的麦克风输入设备。")
+            statusText = L("无法启动监听")
             return
         }
 
@@ -80,12 +80,12 @@ final class MicrophoneCheckModel: ObservableObject {
             engine.prepare()
             try engine.start()
             isRunning = true
-            statusText = "正在监听…"
+            statusText = L("正在监听…")
         } catch {
             input.removeTap(onBus: 0)
             isRunning = false
-            statusText = "无法启动监听"
-            errorText = "麦克风监听启动失败：\(error.localizedDescription)"
+            statusText = L("无法启动监听")
+            errorText = L("麦克风监听启动失败：{0}", error.localizedDescription)
         }
     }
 
@@ -121,26 +121,26 @@ struct MicrophoneCheckView: View {
         VStack(alignment: .leading, spacing: DS.Spacing.lg) {
             CheckHeader(
                 icon: "mic.fill",
-                title: "麦克风测试",
-                subtitle: "对着麦克风说话或发出声音，观察下方电平条是否随声音跳动。"
+                title: L("麦克风测试"),
+                subtitle: L("对着麦克风说话或发出声音，观察下方电平条是否随声音跳动。")
             )
 
             if model.permissionDenied {
                 VStack(alignment: .leading, spacing: DS.Spacing.md) {
                     InlineNotice(icon: "exclamationmark.triangle.fill", tint: .orange,
-                        text: model.errorText ?? "麦克风权限被拒绝。请在「系统设置 › 隐私与安全性 › 麦克风」中允许 MacCheck。")
+                        text: model.errorText ?? L("麦克风权限被拒绝。请在「系统设置 › 隐私与安全性 › 麦克风」中允许 MacCheck。"))
                     HStack(spacing: DS.Spacing.md) {
                         Button {
                             model.openPrivacySettings()
                         } label: {
-                            Label("打开麦克风权限设置", systemImage: "gearshape")
+                            Label(L("打开麦克风权限设置"), systemImage: "gearshape")
                         }
                         .buttonStyle(.borderedProminent)
 
                         Button {
                             model.retry()
                         } label: {
-                            Label("重新检测", systemImage: "arrow.clockwise")
+                            Label(L("重新检测"), systemImage: "arrow.clockwise")
                         }
                         .buttonStyle(.bordered)
                     }
@@ -155,23 +155,23 @@ struct MicrophoneCheckView: View {
             DS.Divider()
 
             HStack(spacing: DS.Spacing.md) {
-                Text("测试结果：").font(DS.Font.body).foregroundStyle(.secondary)
-                Button("电平正常跳动") {
+                Text(L("测试结果：")).font(DS.Font.body).foregroundStyle(.secondary)
+                Button(L("电平正常跳动")) {
                     model.stop()
-                    onComplete(CheckResult(id: "microphone", title: "麦克风", status: .pass,
-                        summary: "麦克风可正常拾音，电平随声音跳动"))
+                    onComplete(CheckResult(id: "microphone", title: L("麦克风"), status: .pass,
+                        summary: L("麦克风可正常拾音，电平随声音跳动")))
                 }
                 .buttonStyle(.borderedProminent)
-                Button("无反应 / 异常") {
+                Button(L("无反应 / 异常")) {
                     model.stop()
-                    onComplete(CheckResult(id: "microphone", title: "麦克风", status: .warning,
-                        summary: "麦克风电平无跳动或异常，建议进一步检查"))
+                    onComplete(CheckResult(id: "microphone", title: L("麦克风"), status: .warning,
+                        summary: L("麦克风电平无跳动或异常，建议进一步检查")))
                 }
                 .buttonStyle(.bordered)
             }
         }
         .padding(DS.Spacing.xl)
-        .checkPane("麦克风")
+        .checkPane(L("麦克风"))
         .onAppear { model.start() }
         .onDisappear { model.stop() }
     }
