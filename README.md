@@ -1,95 +1,99 @@
-**English** · [Français](README.fr.md) · [简体中文](README.zh-CN.md)
+**Français** · [English](README.en.md) · [简体中文](README.zh-CN.md)
 
 # MacCheck
 
 > [!NOTE]
-> **About this version.** This is a modified fork of the open-source project **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** by andyhuo520. It was adapted with the help of AI to add a **three-language interface (English / Français / 简体中文)** and **support for many national keyboard layouts**, plus fixes for several issues reported upstream. Because these changes were AI-assisted and have not yet been tested on every Mac model, **this version may contain bugs or mistakes. Feedback is very welcome**: please [open an issue](../../issues) describing your Mac model, macOS version and what you saw.
+> **À propos de cette version.** Il s'agit d'une version modifiée (fork) du projet open source **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** créé par andyhuo520. Elle a été adaptée avec l'aide de l'IA pour proposer une **interface en trois langues (English / Français / 简体中文)** et **la prise en charge de nombreuses dispositions de clavier nationales**, ainsi que des corrections pour plusieurs problèmes signalés sur le projet d'origine. Ces modifications ayant été réalisées avec l'aide de l'IA et n'ayant pas encore été testées sur tous les modèles de Mac, **cette version peut contenir des bugs ou des erreurs. Vos retours sont les bienvenus** : [ouvrez une issue](../../issues) en indiquant votre modèle de Mac, votre version de macOS et ce que vous avez constaté.
 >
-> This fork is maintained by **[InnoMicro](https://innomicro.fr)**, a Paris-based wholesaler of PC screens and Apple parts. Visit **[innomicro.fr](https://innomicro.fr)**.
+> Ce fork est maintenu par **[InnoMicro](https://innomicro.fr)**, grossiste parisien en écrans de PC et pièces détachées Apple. Rendez-nous visite sur **[innomicro.fr](https://innomicro.fr)**.
 >
-> All credit for the original app goes to its author. The upstream repository does not include a license file; if you plan to redistribute this app commercially, please contact the original author first.
+> Tout le mérite de l'application d'origine revient à son auteur. Le dépôt d'origine ne contient pas de fichier de licence ; si vous souhaitez redistribuer cette application à des fins commerciales, contactez d'abord l'auteur d'origine.
 
-MacCheck is a local macOS inspection tool for buying and selling used Macs, in-store checks and self-diagnosis. It automatically reads hardware specs, battery, storage, network, security and port information, and provides interactive tests for the keyboard, display, audio, microphone, camera, trackpad, disk speed and more. Results can be exported as a PDF or PNG report.
+MacCheck est un outil macOS local pour contrôler un Mac d'occasion, à l'achat, à la vente, en boutique ou en autodiagnostic. Il lit automatiquement les caractéristiques matérielles, la batterie, le stockage, le réseau, la sécurité et les ports, et propose des tests interactifs pour le clavier, l'écran, le son, le micro, la caméra, le trackpad, la vitesse du disque, etc. Les résultats s'exportent en rapport PDF ou PNG.
 
-> Privacy: MacCheck runs entirely on your Mac and never uploads serial numbers, results or reports. Screenshots in this README come from real devices (taken with the original Chinese interface) with serial numbers masked.
+> Confidentialité : MacCheck fonctionne entièrement sur votre Mac et n'envoie jamais de numéro de série, de résultat ni de rapport. Les captures de ce README proviennent d'appareils réels (interface chinoise d'origine), avec les numéros de série masqués.
 
-![MacCheck overview](docs/assets/overview-demo.png)
+![Vue d'ensemble MacCheck](docs/assets/overview-demo.png)
 
-## What's new in this fork (v1.3)
+## Nouveautés de ce fork (v1.3.0)
 
-**Interface in three languages.** English, Français and 简体中文, switchable at any time in **Settings → Interface language**, or following the macOS language automatically. Reports, check results, permission prompts and device names (e.g. "MacBook Pro (14 pouces, 2021)") are all translated.
+**Interface en trois langues.** English, Français et 简体中文, modifiable à tout moment dans **Réglages → Langue de l'interface**, ou suivant automatiquement la langue de macOS. Rapports, résultats, demandes d'autorisation et noms d'appareils (ex. « MacBook Pro (14 pouces, 2021) ») sont traduits.
 
-**Keyboard test for every country's keyboard.**
-- Detects the physical keyboard type automatically: **ANSI** (US), **ISO** (French, German, British, Spanish, Italian, Nordic…) or **JIS** (Japanese), with the correct shape for the Return key, the extra ISO key and the JIS keys.
-- Keycap labels are read from the keyboard layouts installed in macOS, so **AZERTY, QWERTZ, Spanish, Swiss, Belgian, Nordic, Russian** and every other layout shows the right characters. You can pick any layout manually.
-- Click a keycap to confirm it manually (for keys the system intercepts) or to mark it as not present on this Mac.
+**Test du clavier pour les claviers de tous les pays.**
+- Détection automatique du type physique de clavier : **ANSI** (américain), **ISO** (français, allemand, britannique, espagnol, italien, nordique…) ou **JIS** (japonais), avec la bonne forme de touche Entrée, la touche ISO supplémentaire et les touches JIS.
+- Les caractères des touches sont lus depuis les dispositions installées dans macOS : **AZERTY, QWERTZ, espagnol, suisse, belge, nordique, russe** et toutes les autres dispositions s'affichent correctement. Vous pouvez aussi choisir une disposition manuellement.
+- Cliquez sur une touche pour la valider manuellement (touches interceptées par le système) ou la marquer comme absente sur ce Mac.
 
-**Fixes for issues reported upstream.**
+**Corrections des problèmes signalés sur le projet d'origine.**
 
-| Upstream issue | Fix |
+| Issue d'origine | Correction |
 | --- | --- |
-| [#1](https://github.com/andyhuo520/MacCheck/issues/1) Won't open on Intel Macs | The release build is now a **universal binary** (Apple Silicon + Intel), and the release script refuses to package if a slice is missing. Temperature and fan readings now also work on Intel Macs. |
-| [#2](https://github.com/andyhuo520/MacCheck/issues/2) Stronger MDM detection | Detects the common **MDM bypass**: Apple's enrollment servers (`deviceenrollment.apple.com`, `mdmenrollment.apple.com`, `iprofiles.apple.com`…) redirected to `0.0.0.0` in `/etc/hosts`, plus the forged marker files that bypass scripts leave behind. |
-| [#3](https://github.com/andyhuo520/MacCheck/issues/3) English language | English interface and README (plus French). |
-| [#4](https://github.com/andyhuo520/MacCheck/issues/4) Disk read/write totals via `smartctl` | New "Disk lifetime & data written" check: total data written/read, life used, power-on hours, unsafe shutdowns and media errors. Requires [smartmontools](https://www.smartmontools.org) (`brew install smartmontools`); without it the check explains how to install it. |
-| [#5](https://github.com/andyhuo520/MacCheck/issues/5) F11 / false stuck keys, Thunderbolt SSD not detected, top of screen not tested | ⌘, caps lock and other modifiers no longer show as falsely "stuck"; F1–F12 media functions (brightness, volume…) are mapped back to their F-keys. The port test now detects **Thunderbolt / USB4 devices and external disks**. The keyboard and screen tests now open in a true **full-screen window that covers the whole display**, including the menu bar strip and the area beside the notch; press **H** to hide the screen-test panel. |
+| [#1](https://github.com/andyhuo520/MacCheck/issues/1) Ne s'ouvre pas sur les Mac Intel | La version Release est désormais un **binaire universel** (Apple Silicon + Intel), et le script de publication refuse d'empaqueter s'il manque une architecture. Les températures et ventilateurs sont aussi lus sur Mac Intel. |
+| [#2](https://github.com/andyhuo520/MacCheck/issues/2) Détection MDM renforcée | Détecte le **contournement MDM** courant : serveurs d'inscription d'Apple (`deviceenrollment.apple.com`, `mdmenrollment.apple.com`, `iprofiles.apple.com`…) redirigés vers `0.0.0.0` dans `/etc/hosts`, ainsi que les fichiers marqueurs falsifiés laissés par les scripts de contournement. |
+| [#3](https://github.com/andyhuo520/MacCheck/issues/3) Langue anglaise | Interface et README en anglais (et en français). |
+| [#4](https://github.com/andyhuo520/MacCheck/issues/4) Volume lu/écrit via `smartctl` | Nouveau contrôle « Durée de vie et volume écrit du disque » : total écrit/lu, durée de vie utilisée, heures sous tension, arrêts non sécurisés et erreurs de support. Nécessite [smartmontools](https://www.smartmontools.org) (`brew install smartmontools`) ; sinon, le contrôle explique comment l'installer. |
+| [#5](https://github.com/andyhuo520/MacCheck/issues/5) F11 / fausses touches bloquées, SSD Thunderbolt non détecté, haut de l'écran non testé | ⌘, verr. maj et les autres touches de modification ne sont plus signalées à tort comme « bloquées » ; les fonctions F1–F12 (luminosité, volume…) sont rattachées à leur touche F. Le test des ports détecte désormais les **périphériques Thunderbolt / USB4 et les disques externes**. Les tests du clavier et de l'écran s'ouvrent dans une vraie **fenêtre plein écran couvrant tout l'écran**, y compris la barre des menus et la zone autour de l'encoche ; appuyez sur **H** pour masquer le panneau du test d'écran. |
 
-Also fixed: the battery cycle-count tamper check never appeared in the report.
+Également corrigé : la vérification anti-falsification du nombre de cycles de batterie n'apparaissait jamais dans le rapport.
 
-## Features
+## Fonctionnalités
 
-- Model, chip, memory, macOS version, serial number and model year
-- Battery cycle count and health, storage, network, Bluetooth and ports
-- High-risk checks for used-Mac deals: MDM (including bypass detection), Apple ID / Activation Lock, security chip
-- Interactive tests: keyboard (key by key), display (solid colors / gray gradient / checkerboard), speakers, microphone, camera, Touch ID, trackpad
-- Disk speed test, CPU stress test with temperatures and fan speeds, port-by-port test
-- Local AI model suitability estimate based on memory
-- One-click PDF / PNG report export and saved history for later comparison
-- Light, dark or system appearance
+- Modèle, puce, mémoire, version de macOS, numéro de série et année du modèle
+- Cycles et santé de la batterie, stockage, réseau, Bluetooth et ports
+- Contrôles à risque pour l'occasion : MDM (avec détection du contournement), identifiant Apple / verrouillage d'activation, puce de sécurité
+- Tests interactifs : clavier (touche par touche), écran (couleurs unies / dégradé / damier), haut-parleurs, micro, caméra, Touch ID, trackpad
+- Test de vitesse du disque, test de charge avec températures et ventilateurs, test port par port
+- Estimation des modèles d'IA locaux utilisables selon la mémoire
+- Export du rapport en PDF / PNG en un clic et historique pour comparer plus tard
+- Apparence claire, sombre ou système
 
-![MacCheck hardware specs](docs/assets/hardware-specs-real.png)
+![Caractéristiques MacCheck](docs/assets/hardware-specs-real.png)
 
-## Requirements
+## Configuration requise
 
-- macOS 14.0 or later
-- Apple Silicon or Intel Mac
-- Xcode 16 or later to build from source
-- Optional: [`xcodegen`](https://github.com/yonaskolb/XcodeGen) to regenerate the Xcode project from `project.yml`
-- Optional: [`smartmontools`](https://www.smartmontools.org) for disk lifetime data (`brew install smartmontools`)
+- macOS 14.0 ou ultérieur
+- Mac Apple Silicon ou Intel
+- Xcode 16 ou ultérieur pour compiler depuis les sources
+- Facultatif : [`xcodegen`](https://github.com/yonaskolb/XcodeGen) pour régénérer le projet Xcode depuis `project.yml`
+- Facultatif : [`smartmontools`](https://www.smartmontools.org) pour les données de durée de vie du disque (`brew install smartmontools`)
 
 ## Installation
 
-This fork does not publish a prebuilt download yet. Build it from source (see below) or use the release script to create a DMG.
+1. Téléchargez `MacCheck-IM-x.y.z.dmg` depuis la page **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)**. Le même fichier fonctionne sur les Mac Apple Silicon et Intel.
+2. Ouvrez le DMG et glissez `MacCheck.app` dans `Applications`.
+3. Les autorisations (caméra, micro, Bluetooth) sont demandées au besoin.
 
-If macOS says the app "can't be opened because the developer cannot be verified", right-click `MacCheck.app` and choose **Open**. If it says the app "is damaged", the download quarantine flag is usually the cause; after moving the app to `/Applications`, run:
+Le DMG est compilé automatiquement par GitHub Actions et signé ad hoc (pas encore de signature Developer ID ni de notarisation Apple) : macOS affichera donc un avertissement au premier lancement.
+
+Si macOS indique que l'app « ne peut pas être ouverte car le développeur ne peut pas être vérifié », faites un clic droit sur `MacCheck.app` puis **Ouvrir**. Si macOS indique que l'app « est endommagée », c'est généralement l'attribut de quarantaine du téléchargement ; après avoir déplacé l'app dans `/Applications`, exécutez :
 
 ```bash
 sudo xattr -rd com.apple.quarantine /Applications/MacCheck.app
 ```
 
-## How to use
+## Utilisation
 
-1. Open MacCheck and wait for the automatic system scan on the Overview page.
-2. Read the **Overview** and **Critical issues** sections first; red items need attention.
-3. Go through each test under **Hardware tests** (keyboard, screen, audio, camera…).
-4. Click **Save to history** to keep a snapshot of this inspection.
-5. Click **Export report** and choose PNG or PDF.
+1. Ouvrez MacCheck et attendez la fin de l'analyse automatique sur la page Vue d'ensemble.
+2. Lisez d'abord la **Vue d'ensemble** et les **Problèmes critiques** ; les éléments rouges sont prioritaires.
+3. Passez chaque test de la section **Tests matériels** (clavier, écran, son, caméra…).
+4. Cliquez sur **Enregistrer dans l'historique** pour conserver un instantané de l'inspection.
+5. Cliquez sur **Exporter le rapport** et choisissez PNG ou PDF.
 
-![MacCheck security checks](docs/assets/security-real.png)
+![Contrôles de sécurité MacCheck](docs/assets/security-real.png)
 
-![MacCheck keyboard test](docs/assets/testing-demo.png)
+![Test du clavier MacCheck](docs/assets/testing-demo.png)
 
-## Build from source
+## Compiler depuis les sources
 
 ```bash
 git clone https://github.com/Davina-01/MacCheck.git
 cd MacCheck
 
-# Optional: only if you changed project.yml
+# Facultatif : seulement si vous avez modifié project.yml
 brew install xcodegen
 xcodegen generate
 
-# Universal build (Apple Silicon + Intel)
+# Compilation universelle (Apple Silicon + Intel)
 xcodebuild \
   -project MacCheck.xcodeproj \
   -scheme MacCheck \
@@ -100,49 +104,55 @@ xcodebuild \
   CODE_SIGN_IDENTITY="-" \
   CODE_SIGNING_REQUIRED=NO
 
-# Check that both architectures are present
+# Vérifier la présence des deux architectures
 lipo -archs build_release/Build/Products/Release/MacCheck.app/Contents/MacOS/MacCheck
 ```
 
-The app is built at `build_release/Build/Products/Release/MacCheck.app`.
+L'app est générée dans `build_release/Build/Products/Release/MacCheck.app`.
 
-## Packaging a DMG
+## Créer un DMG
 
 ```bash
 ./scripts/build_and_notarize.sh
 ```
 
-The script regenerates the project if `xcodegen` is installed, builds a universal Release binary and verifies both architectures, signs and notarizes it if a Developer ID certificate is available (otherwise it produces an ad-hoc DMG for local use), and writes `~/Desktop/MacCheck-1.3.dmg`.
+Le script régénère le projet si `xcodegen` est installé, compile un binaire Release universel et vérifie les deux architectures, signe et fait notariser l'app si un certificat Developer ID est disponible (sinon il produit un DMG ad hoc pour un usage local), puis écrit `dist/MacCheck-IM-1.3.0.dmg`.
 
-For public distribution, configure:
+Pour une distribution publique, configurez :
 
 ```bash
-export MACCHECK_SIGN_ID="Developer ID Application: Your Name (TEAMID)"
+export MACCHECK_SIGN_ID="Developer ID Application: Votre Nom (TEAMID)"
 export MACCHECK_NOTARY_PROFILE="maccheck-notary"
 ```
 
-and store notarization credentials with `xcrun notarytool store-credentials`.
+et enregistrez les identifiants de notarisation avec `xcrun notarytool store-credentials`.
 
-## Translations
+## Numéros de version
 
-The source language is Simplified Chinese: each interface string is written in Chinese in the code and looked up with `L("…")`. Translations live in:
+- Version de l'app (affichée dans macOS) : `x.y.z` en chiffres uniquement, comme l'exige Apple. Ce fork poursuit la numérotation d'origine à partir de 1.3.0.
+- Version InnoMicro : tag Git `vX.Y.Z-im`, fichier `MacCheck-IM-X.Y.Z.dmg`, release « MacCheck IM X.Y.Z ».
+- Règle : correctif → `1.3.1`, nouvelle fonctionnalité → `1.4.0`, changement majeur → `2.0.0`.
+
+## Traductions
+
+La langue source est le chinois simplifié : chaque texte de l'interface est écrit en chinois dans le code et récupéré via `L("…")`. Les traductions se trouvent dans :
 
 ```text
 Sources/Resources/en.lproj/Localizable.strings
 Sources/Resources/fr.lproj/Localizable.strings
 ```
 
-Placeholders such as `{0}` and `{1}` must be kept in translations (their order can change). Corrections are welcome via pull request.
+Les marqueurs comme `{0}` et `{1}` doivent être conservés dans les traductions (leur ordre peut changer). Les corrections sont les bienvenues par pull request.
 
-## Project structure
+## Structure du projet
 
 ```text
 Sources/
-  App/                 App entry point and Info.plist
-  Core/                Hardware probing, reports, history, system services, localization
-  Checks/              Keyboard, screen, audio, camera and other interactive tests
-  UI/                  SwiftUI views, design system and navigation
-  Resources/           Translations (en, fr) and localized permission prompts
+  App/                 Point d'entrée de l'app et Info.plist
+  Core/                Détection matérielle, rapports, historique, services système, localisation
+  Checks/              Clavier, écran, son, caméra et autres tests interactifs
+  UI/                  Vues SwiftUI, système de design et navigation
+  Resources/           Traductions (en, fr) et demandes d'autorisation localisées
 scripts/
   build_and_notarize.sh
 docs/
@@ -151,7 +161,7 @@ docs/
   assets/
 ```
 
-## Credits
+## Crédits
 
-- Original app: **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** by andyhuo520
-- Multilingual and multi-layout version: maintained by **[InnoMicro](https://innomicro.fr)**, Paris, with AI assistance
+- Application d'origine : **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** par andyhuo520
+- Version multilingue et multi-dispositions : maintenue par **[InnoMicro](https://innomicro.fr)**, Paris, avec l'aide de l'IA

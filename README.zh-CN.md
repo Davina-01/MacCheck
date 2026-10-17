@@ -1,4 +1,4 @@
-[English](README.md) · [Français](README.fr.md) · **简体中文**
+[Français](README.md) · [English](README.en.md) · **简体中文**
 
 # MacCheck 验机宝
 
@@ -15,7 +15,7 @@ MacCheck 是一款面向二手 Mac 交易、门店验机和个人自检的 macOS
 
 ![MacCheck overview](docs/assets/overview-demo.png)
 
-## 本 Fork 新增内容（v1.3）
+## 本 Fork 新增内容（v1.3.0）
 
 **三种界面语言。** English、Français、简体中文，可在 **设置 → 界面语言** 中随时切换，或自动跟随 macOS 系统语言。报告、检测结论、系统权限提示和机型名称（如「MacBook Pro（14 英寸，2021）」）都会随语言切换。
 
@@ -59,7 +59,11 @@ MacCheck 是一款面向二手 Mac 交易、门店验机和个人自检的 macOS
 
 ## 安装
 
-本 Fork 暂未发布预编译安装包，请按下方步骤从源码构建，或用打包脚本生成 DMG。
+1. 到 **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)** 页面下载 `MacCheck-IM-x.y.z.dmg`，同一个文件同时支持 Apple Silicon 和 Intel Mac。
+2. 打开 DMG，将 `MacCheck.app` 拖到 `Applications`。
+3. 摄像头、麦克风、蓝牙等权限会按需请求。
+
+DMG 由 GitHub Actions 自动构建，目前为 ad-hoc 签名（尚未使用 Developer ID 签名和 Apple 公证），首次打开时 macOS 会弹出提示。
 
 如果 macOS 提示"无法打开，因为无法验证开发者"，右键点击 `MacCheck.app`，选择"打开"。如果提示 App"已损坏，无法打开"，通常是下载隔离属性导致；确认已将 App 拖入 `/Applications` 后，在终端执行：
 
@@ -112,7 +116,7 @@ lipo -archs build_release/Build/Products/Release/MacCheck.app/Contents/MacOS/Mac
 ./scripts/build_and_notarize.sh
 ```
 
-脚本会：如已安装 `xcodegen` 则重新生成工程；构建通用二进制 Release 版本并校验两个架构；有 Developer ID 证书时执行签名与公证，否则生成本地可运行的 ad-hoc DMG；最终输出 `~/Desktop/MacCheck-1.3.dmg`。
+脚本会：如已安装 `xcodegen` 则重新生成工程；构建通用二进制 Release 版本并校验两个架构；有 Developer ID 证书时执行签名与公证，否则生成本地可运行的 ad-hoc DMG；最终输出 `dist/MacCheck-IM-1.3.0.dmg`。
 
 如要正式分发，请先配置：
 
@@ -122,6 +126,12 @@ export MACCHECK_NOTARY_PROFILE="maccheck-notary"
 ```
 
 并按 Apple 官方流程使用 `xcrun notarytool store-credentials` 保存公证凭证。
+
+## 版本号
+
+- App 版本号（macOS 中显示）：只用数字 `x.y.z`，这是 Apple 的要求。本 Fork 在原项目基础上从 1.3.0 继续编号。
+- InnoMicro 发布版：Git 标签 `vX.Y.Z-im`，安装包 `MacCheck-IM-X.Y.Z.dmg`，Release 标题「MacCheck IM X.Y.Z」。
+- 规则：修 bug → `1.3.1`，加功能 → `1.4.0`，重大不兼容改动 → `2.0.0`。
 
 ## 翻译
 
