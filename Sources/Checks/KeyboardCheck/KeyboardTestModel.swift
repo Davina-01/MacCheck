@@ -14,19 +14,48 @@ import Combine
 @MainActor
 final class KeyboardTestModel: ObservableObject {
 
-    // 用户选择（保存在本机，下次沿用）
-    @Published var physicalType: PhysicalKeyboardType {
+    /// 选择器里"自动"对应的取值
+    static let auto = "auto"
+
+    // 用户选择：默认"自动"，每次打开都重新检测；手动选择才会保存在本机。
+    @Published var physicalSelection: String {
         didSet {
-            guard oldValue != physicalType else { return }
-            UserDefaults.standard.set(physicalType.rawValue, forKey: Self.physicalKey)
+            guard oldValue != physicalSelection else { return }
+            save(physicalSelection, forKey: Self.physicalKey)
             resetProgress()
         }
     }
-    @Published var layoutID: String {
+    @Published var layoutSelection: String {
         didSet {
-            guard oldValue != layoutID else { return }
-            UserDefaults.standard.set(layoutID, forKey: Self.layoutKey)
+            guard oldValue != layoutSelection else { return }
+            save(layoutSelection, forKey: Self.layoutKey)
             legends = KeyLegendProvider.legends(for: layoutID)
+        }
+    }
+
+    /// 本次检测到的物理形态与当前输入布局
+    let detectedPhysicalType: PhysicalKeyboardType
+    let detectedLayoutID: String
+
+    /// 实际生效的物理形态 / 键盘布局
+    var physicalType: PhysicalKeyboardType {
+        physicalSelection == Self.auto
+            ? detectedPhysicalType
+            : PhysicalKeyboardType(rawValue: physicalSelection) ?? detectedPhysicalType
+    }
+    var layoutID: String {
+        layoutSelection == Self.auto ? detectedLayoutID : layoutSelection
+    }
+
+    func layoutName(_ id: String) -> String {
+        availableLayouts.first { $0.id == id }?.name ?? id
+    }
+
+    private func save(_ value: String, forKey key: String) {
+        if value == Self.auto {
+            UserDefaults.standard.removeObject(forKey: key)
+        } else {
+            UserDefaults.standard.set(value, forKey: key)
         }
     }
 
@@ -46,8 +75,8 @@ final class KeyboardTestModel: ObservableObject {
     private var stuckCheckTimer: Timer?
     private var resignObserver: NSObjectProtocol?
 
-    private static let physicalKey = "keyboardTest.physicalType"
-    private static let layoutKey = "keyboardTest.layoutID"
+    private static let physicalKey = "keyboardTest.physicalSelection"
+    private static let layoutKey = "keyboardTest.layoutSelection"
     private static let escKeyCode: UInt16 = 53
     private static let capsLockKeyCode: UInt16 = 57
     private static let escHoldToExitSeconds: TimeInterval = 1.2
@@ -95,17 +124,20 @@ final class KeyboardTestModel: ObservableObject {
 
     init() {
         let defaults = UserDefaults.standard
-        physicalType = PhysicalKeyboardType(rawValue: defaults.string(forKey: Self.physicalKey) ?? "")
-            ?? PhysicalKeyboardType.detected()
+        detectedPhysicalType = PhysicalKeyboardType.detected()
+        detectedLayoutID = KeyLegendProvider.currentLayoutID()
         let layouts = KeyLegendProvider.installedLayouts()
-        var chosen = defaults.string(forKey: Self.layoutKey) ?? KeyLegendProvider.currentLayoutID()
-        // 保存的布局可能已被卸载，回退到当前布局（init 中赋值不会触发 didSet，所以先算好再赋值）
-        if !layouts.isEmpty && !layouts.contains(where: { $0.id == chosen }) {
-            chosen = KeyLegendProvider.currentLayoutID()
-        }
-        layoutID = chosen
+
+        var physical = defaults.string(forKey: Self.physicalKey) ?? Self.auto
+        if physical != Self.auto && PhysicalKeyboardType(rawValue: physical) == nil { physical = Self.auto }
+        var layout = defaults.string(forKey: Self.layoutKey) ?? Self.auto
+        // 保存的布局可能已被卸载，回到自动（init 中赋值不会触发 didSet，所以先算好再赋值）
+        if layout != Self.auto && !layouts.contains(where: { $0.id == layout }) { layout = Self.auto }
+
+        physicalSelection = physical
+        layoutSelection = layout
         availableLayouts = layouts
-        legends = KeyLegendProvider.legends(for: chosen)
+        legends = KeyLegendProvider.legends(for: layout == Self.auto ? detectedLayoutID : layout)
     }
 
     // MARK: - 统计
@@ -132,10 +164,8 @@ final class KeyboardTestModel: ObservableObject {
 
     /// 恢复为自动识别的物理形态与当前输入布局。
     func useDetectedSettings() {
-        UserDefaults.standard.removeObject(forKey: Self.physicalKey)
-        UserDefaults.standard.removeObject(forKey: Self.layoutKey)
-        physicalType = PhysicalKeyboardType.detected()
-        layoutID = KeyLegendProvider.currentLayoutID()
+        physicalSelection = Self.auto
+        layoutSelection = Self.auto
     }
 
     func resetProgress() {
@@ -302,11 +332,11 @@ final class KeyboardTestModel: ObservableObject {
 
     /// 生成本项检测结果：完全测过且无卡键 → pass；有卡键 → warning；未测完就退出 → 按已测覆盖率降级。
     func buildResult() -> CheckResult {
-        let layoutName = availableLayouts.first { $0.id == layoutID }?.name ?? layoutID
+        let layoutText = layoutName(layoutID)
         var details: [String: String] = [
             L("已测键位数"): "\(verifiedCount) / \(totalKeyCount)",
             L("键盘形态"): physicalType.title,
-            L("键盘布局"): layoutName,
+            L("键盘布局"): layoutText,
         ]
         let manual = manualKeyCodes.subtracting(testedKeyCodes).intersection(activeKeyCodes)
         if !manual.isEmpty { details[L("手动确认的键")] = names(manual) }

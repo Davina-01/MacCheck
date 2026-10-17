@@ -55,22 +55,23 @@ struct TouchIDCheckView: View {
     }
 
     private func authenticate() {
-        let context = LAContext()
-        context.localizedFallbackTitle = ""
         statusText = L("请将手指放在 Touch ID 上…")
-        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
-                               localizedReason: L("验证 Touch ID 传感器是否正常")) { success, authError in
-            Task { @MainActor in
-                if success {
-                    onComplete(CheckResult(id: "touchID", title: "Touch ID", status: .pass,
-                        summary: L("指纹识别成功，Touch ID 传感器工作正常")))
+        // async 版本：结果回到主线程处理。回调版的 reply 在后台线程执行，
+        // 而闭包写在视图（主线程隔离）里，Swift 6 会在运行时判定越界并终止 App。
+        Task {
+            let context = LAContext()
+            context.localizedFallbackTitle = ""
+            do {
+                _ = try await context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
+                                                     localizedReason: L("验证 Touch ID 传感器是否正常"))
+                onComplete(CheckResult(id: "touchID", title: "Touch ID", status: .pass,
+                    summary: L("指纹识别成功，Touch ID 传感器工作正常")))
+            } catch {
+                let code = (error as? LAError)?.code
+                if code == .userCancel || code == .systemCancel {
+                    statusText = L("已取消，可再次尝试。")
                 } else {
-                    let code = (authError as? LAError)?.code
-                    if code == .userCancel || code == .systemCancel {
-                        statusText = L("已取消，可再次尝试。")
-                    } else {
-                        statusText = L("识别失败，可重试或跳过。")
-                    }
+                    statusText = L("识别失败，可重试或跳过。")
                 }
             }
         }
