@@ -54,19 +54,23 @@ struct KeyboardCheckView: View {
 
     private var settingsBar: some View {
         HStack(spacing: 16) {
-            Picker(L("键盘形态"), selection: $model.physicalType) {
+            Picker(L("键盘形态"), selection: $model.physicalSelection) {
+                Text(L("自动（{0}）", model.detectedPhysicalType.title)).tag(KeyboardTestModel.auto)
+                Divider()
                 ForEach(PhysicalKeyboardType.allCases) { type in
-                    Text(type.title).tag(type)
+                    Text(type.title).tag(type.rawValue)
                 }
             }
-            .frame(width: 240)
+            .frame(width: 280)
 
-            Picker(L("键盘布局"), selection: $model.layoutID) {
+            Picker(L("键盘布局"), selection: $model.layoutSelection) {
+                Text(L("自动（{0}）", model.layoutName(model.detectedLayoutID))).tag(KeyboardTestModel.auto)
+                Divider()
                 ForEach(model.availableLayouts) { layout in
                     Text(layout.name).tag(layout.id)
                 }
             }
-            .frame(width: 300)
+            .frame(width: 320)
 
             Button(L("自动识别")) { model.useDetectedSettings() }
             Button(L("重新开始")) { model.resetProgress() }
@@ -75,16 +79,90 @@ struct KeyboardCheckView: View {
         .buttonStyle(.bordered)
     }
 
+    // MARK: - 键盘网格
+
+    private func slotWidth(_ slot: KeySlot, unit: CGFloat) -> CGFloat {
+        unit * slot.width + keySpacing * max(0, slot.width - 1)
+    }
+
+    private func rowWidth(_ row: [KeySlot], unit: CGFloat) -> CGFloat {
+        row.reduce(0) { $0 + slotWidth($1, unit: unit) } + keySpacing * CGFloat(max(0, row.count - 1))
+    }
+
+    private func isReturnPart(_ slot: KeySlot, _ suffix: String) -> Bool {
+        slot.keys.count == 1 && slot.keys[0].id.hasSuffix(suffix)
+    }
+
+    /// 第 index 行与下一行之间是否有跨两行的竖回车（ISO / JIS）。
+    private func hasTallReturn(at index: Int) -> Bool {
+        let rows = model.rows
+        guard index + 1 < rows.count else { return false }
+        return rows[index].contains { isReturnPart($0, "-top") } && rows[index + 1].contains { isReturnPart($0, "-bottom") }
+    }
+
     private func keyboardGrid(unit: CGFloat) -> some View {
-        VStack(spacing: keySpacing) {
-            ForEach(Array(model.rows.enumerated()), id: \.offset) { _, row in
-                HStack(spacing: keySpacing) {
-                    ForEach(row) { slot in
-                        slotView(slot, unit: unit)
+        let rows = model.rows
+        // 以数字行为基准宽度，让各行右边缘对齐
+        let reference = rowWidth(rows[min(1, rows.count - 1)], unit: unit)
+        return VStack(alignment: .leading, spacing: keySpacing) {
+            ForEach(Array(rows.enumerated()), id: \.offset) { index, row in
+                if hasTallReturn(at: index) {
+                    tallReturnBlock(upper: row, lower: rows[index + 1], unit: unit, reference: reference)
+                } else if index > 0 && hasTallReturn(at: index - 1) {
+                    EmptyView()   // 已在上一行的组合块里画过
+                } else {
+                    HStack(spacing: keySpacing) {
+                        ForEach(row) { slot in
+                            slotView(slot, unit: unit)
+                        }
                     }
                 }
             }
         }
+        .frame(width: reference, alignment: .leading)
+    }
+
+    /// ISO / JIS 竖回车：上下两行的左侧按键照常排列，右侧画成一个完整的倒 L 形回车键。
+    /// 以前把它画成两个独立的小键，看起来像是两个回车。
+    private func tallReturnBlock(upper: [KeySlot], lower: [KeySlot], unit: CGFloat, reference: CGFloat) -> some View {
+        let upperLeft = upper.filter { !isReturnPart($0, "-top") }
+        let lowerLeft = lower.filter { !isReturnPart($0, "-bottom") }
+        let topWidth = max(unit * 0.8, reference - rowWidth(upperLeft, unit: unit) - keySpacing)
+        let bottomWidth = min(topWidth, max(unit * 0.6, reference - rowWidth(lowerLeft, unit: unit) - keySpacing))
+        let height = unit * 2 + keySpacing
+        let returnKey = upper.first { isReturnPart($0, "-top") }?.keys.first
+
+        return ZStack(alignment: .topLeading) {
+            VStack(alignment: .leading, spacing: keySpacing) {
+                HStack(spacing: keySpacing) { ForEach(upperLeft) { slotView($0, unit: unit) } }
+                HStack(spacing: keySpacing) { ForEach(lowerLeft) { slotView($0, unit: unit) } }
+            }
+            if let returnKey {
+                tallReturnKey(returnKey, topWidth: topWidth, bottomWidth: bottomWidth,
+                              topHeight: unit, height: height, fontSize: unit > 40 ? 14 : 11)
+                    .offset(x: reference - topWidth)
+            }
+        }
+        .frame(width: reference, height: height, alignment: .topLeading)
+    }
+
+    private func tallReturnKey(_ key: KeyDef, topWidth: CGFloat, bottomWidth: CGFloat,
+                               topHeight: CGFloat, height: CGFloat, fontSize: CGFloat) -> some View {
+        let style = keyStyle(key.keyCode)
+        let shape = InvertedLShape(bottomWidth: bottomWidth, topHeight: topHeight, cornerRadius: 6)
+        return ZStack(alignment: .top) {
+            shape.fill(style.fill)
+            shape.stroke(style.border, style: StrokeStyle(lineWidth: 1.5, dash: style.isAbsent ? [3, 3] : []))
+            Text("⏎")
+                .font(.system(size: fontSize, weight: .medium))
+                .foregroundStyle(.white.opacity(style.isAbsent ? 0.25 : 1))
+                .frame(width: topWidth, height: topHeight)
+        }
+        .frame(width: topWidth, height: height)
+        .contentShape(shape)
+        .onTapGesture { model.cycleManualState(key.keyCode) }
+        .help(L("点击：手动确认可用 → 本机没有此键 → 恢复未测"))
+        .animation(.easeOut(duration: 0.12), value: style.isPressed)
     }
 
     @ViewBuilder
@@ -101,16 +179,21 @@ struct KeyboardCheckView: View {
         }
     }
 
-    private func keyView(_ key: KeyDef, width: CGFloat, height: CGFloat, fontSize: CGFloat) -> some View {
-        let code = key.keyCode
+    private struct KeyStyle {
+        var fill: Color
+        var border: Color
+        var isAbsent: Bool
+        var isPressed: Bool
+    }
+
+    private func keyStyle(_ code: UInt16) -> KeyStyle {
         let isAbsent = model.absentKeyCodes.contains(code)
         let isPressed = model.pressedKeyCodes.contains(code)
         let isStuck = model.stuckKeyCodes.contains(code)
         let isTested = model.testedKeyCodes.contains(code)
         let isManual = model.manualKeyCodes.contains(code) && !isTested
 
-        let fill: Color
-        let border: Color
+        let fill: Color, border: Color
         if isAbsent {
             fill = .clear; border = Color.white.opacity(0.12)
         } else if isStuck {
@@ -124,23 +207,27 @@ struct KeyboardCheckView: View {
         } else {
             fill = Color.white.opacity(0.08); border = Color.white.opacity(0.3)
         }
+        return KeyStyle(fill: fill, border: border, isAbsent: isAbsent, isPressed: isPressed)
+    }
 
+    private func keyView(_ key: KeyDef, width: CGFloat, height: CGFloat, fontSize: CGFloat) -> some View {
+        let style = keyStyle(key.keyCode)
         return Text(model.label(for: key))
             .font(.system(size: fontSize, weight: .medium))
             .lineLimit(1)
             .minimumScaleFactor(0.5)
-            .foregroundStyle(.white.opacity(isAbsent ? 0.25 : 1))
-            .strikethrough(isAbsent)
+            .foregroundStyle(.white.opacity(style.isAbsent ? 0.25 : 1))
+            .strikethrough(style.isAbsent)
             .frame(width: width, height: height)
-            .background(RoundedRectangle(cornerRadius: 6).fill(fill))
+            .background(RoundedRectangle(cornerRadius: 6).fill(style.fill))
             .overlay(
                 RoundedRectangle(cornerRadius: 6)
-                    .strokeBorder(border, style: StrokeStyle(lineWidth: 1.5, dash: isAbsent ? [3, 3] : []))
+                    .strokeBorder(style.border, style: StrokeStyle(lineWidth: 1.5, dash: style.isAbsent ? [3, 3] : []))
             )
             .contentShape(Rectangle())
-            .onTapGesture { model.cycleManualState(code) }
+            .onTapGesture { model.cycleManualState(key.keyCode) }
             .help(L("点击：手动确认可用 → 本机没有此键 → 恢复未测"))
-            .animation(.easeOut(duration: 0.12), value: isPressed)
+            .animation(.easeOut(duration: 0.12), value: style.isPressed)
     }
 
     private var legendBar: some View {
@@ -179,5 +266,33 @@ struct KeyboardCheckView: View {
 
     private func finish() {
         onFinish(model.buildResult())
+    }
+}
+
+/// ISO / JIS 竖回车的倒 L 形：上半部分占满宽度，下半部分靠右、较窄。
+private struct InvertedLShape: Shape {
+    let bottomWidth: CGFloat
+    let topHeight: CGFloat
+    let cornerRadius: CGFloat
+
+    func path(in rect: CGRect) -> Path {
+        let r = min(cornerRadius, topHeight / 2, bottomWidth / 2)
+        let notchX = rect.maxX - bottomWidth
+        var p = Path()
+        p.move(to: CGPoint(x: rect.minX + r, y: rect.minY))
+        p.addLine(to: CGPoint(x: rect.maxX - r, y: rect.minY))
+        p.addArc(tangent1End: CGPoint(x: rect.maxX, y: rect.minY), tangent2End: CGPoint(x: rect.maxX, y: rect.minY + r), radius: r)
+        p.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - r))
+        p.addArc(tangent1End: CGPoint(x: rect.maxX, y: rect.maxY), tangent2End: CGPoint(x: rect.maxX - r, y: rect.maxY), radius: r)
+        p.addLine(to: CGPoint(x: notchX + r, y: rect.maxY))
+        p.addArc(tangent1End: CGPoint(x: notchX, y: rect.maxY), tangent2End: CGPoint(x: notchX, y: rect.maxY - r), radius: r)
+        p.addLine(to: CGPoint(x: notchX, y: rect.minY + topHeight + r))
+        p.addArc(tangent1End: CGPoint(x: notchX, y: rect.minY + topHeight), tangent2End: CGPoint(x: notchX - r, y: rect.minY + topHeight), radius: r)
+        p.addLine(to: CGPoint(x: rect.minX + r, y: rect.minY + topHeight))
+        p.addArc(tangent1End: CGPoint(x: rect.minX, y: rect.minY + topHeight), tangent2End: CGPoint(x: rect.minX, y: rect.minY + topHeight - r), radius: r)
+        p.addLine(to: CGPoint(x: rect.minX, y: rect.minY + r))
+        p.addArc(tangent1End: CGPoint(x: rect.minX, y: rect.minY), tangent2End: CGPoint(x: rect.minX + r, y: rect.minY), radius: r)
+        p.closeSubpath()
+        return p
     }
 }

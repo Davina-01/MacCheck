@@ -24,14 +24,12 @@ final class MicrophoneCheckModel: ObservableObject {
             beginTap()
         case .notDetermined:
             statusText = L("等待麦克风授权…")
-            AVCaptureDevice.requestAccess(for: .audio) { [weak self] granted in
-                Task { @MainActor in
-                    guard let self else { return }
-                    if granted {
-                        self.beginTap()
-                    } else {
-                        self.showPermissionDenied()
-                    }
+            // async 版本：await 后回到主线程（回调版在后台线程回调，会触发 Swift 6 运行时检查导致闪退）
+            Task {
+                if await AVCaptureDevice.requestAccess(for: .audio) {
+                    beginTap()
+                } else {
+                    showPermissionDenied()
                 }
             }
         case .denied, .restricted:

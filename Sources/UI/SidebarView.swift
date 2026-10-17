@@ -3,6 +3,7 @@ import SwiftUI
 /// 侧边栏：概览 + 系统检测 + 硬件测试三段分组，每行显示 SF Symbol 与状态圆点。
 struct SidebarView: View {
     @EnvironmentObject private var model: AppModel
+    @AppStorage(AppLanguage.storageKey) private var languageRawValue = AppLanguage.system.rawValue
 
     var body: some View {
         List(selection: $model.selection) {
@@ -43,9 +44,38 @@ struct SidebarView: View {
         .tag(item)
     }
 
+    /// 常驻的语言切换按钮：任何页面都能一键切换，不必先进入设置。
+    private var languageMenu: some View {
+        Menu {
+            Picker(selection: $languageRawValue) {
+                ForEach(AppLanguage.allCases) { language in
+                    Text(language.displayName).tag(language.rawValue)
+                }
+            } label: {
+                EmptyView()
+            }
+            .pickerStyle(.inline)
+        } label: {
+            Label(AppLanguage.selected == .system
+                    ? "\(AppLanguage.system.displayName) · \(AppLanguage.effective.displayName)"
+                    : AppLanguage.selected.displayName,
+                  systemImage: "globe")
+                .font(DS.Font.caption)
+        }
+        .menuStyle(.borderlessButton)
+        .fixedSize()
+        .help(L("界面语言") + " · Language · Langue")
+    }
+
     private var rescanBar: some View {
         VStack(spacing: 0) {
             DS.Divider()
+            HStack {
+                languageMenu
+                Spacer()
+            }
+            .padding(.horizontal, DS.Spacing.md)
+            .padding(.top, DS.Spacing.sm)
             HStack(spacing: DS.Spacing.sm) {
                 if model.isScanning {
                     ProgressView().controlSize(.small)

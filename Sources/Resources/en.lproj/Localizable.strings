@@ -268,7 +268,7 @@
 "发现常见「绕过 MDM」脚本留下的标记文件，此机可能曾被跳过远程管理注册" = "Marker files left by common \"MDM bypass\" scripts were found; remote management enrollment may have been skipped on this Mac";
 "⚠️ 系统中存在伪造的「云配置已安装」标记文件，通常是绕过 MDM 的脚本留下的。建议要求卖家当面抹掉并重装系统，联网完成设置助理后再确认没有出现「远程管理」页面。" = "⚠️ Forged \"cloud configuration installed\" marker files exist on this system, usually left by MDM bypass scripts. Ask the seller to erase and reinstall macOS in front of you, then complete Setup Assistant online and confirm no \"Remote Management\" screen appears.";
 "此机已被 MDM（移动设备管理）监管" = "This Mac is enrolled in MDM (Mobile Device Management)";
-"⛔ 此机正被企业/学校的 MDM 系统监管，对方可以远程施加限制、甚至远程抹除数据，重装系统通常也无法解除（尤其是 DEP 自动注册的情况）。强烈不建议购买，除非卖家能提供从原organization 解绑的证明。" = "⛔ This Mac is managed by a company/school MDM system. They can impose restrictions or even erase it remotely, and reinstalling macOS usually won't remove it (especially with DEP auto-enrollment). Strongly advise against buying unless the seller can prove it was released from the original organization.";
+"⛔ 此机正被企业/学校的 MDM 系统监管，对方可以远程施加限制、甚至远程抹除数据，重装系统通常也无法解除（尤其是 DEP 自动注册的情况）。强烈不建议购买，除非卖家能提供从原组织解绑的证明。" = "⛔ This Mac is managed by a company/school MDM system. They can impose restrictions or even erase it remotely, and reinstalling macOS usually won't remove it (especially with DEP auto-enrollment). Strongly advise against buying unless the seller can prove it was released from the original organization.";
 "此机存在 DEP 自动注册记录，虽当前未监管，但重装后可能被自动拉回监管" = "This Mac has a DEP auto-enrollment record. It isn't managed now, but may be pulled back under management after a reinstall";
 "⚠️ 此机在 Apple 的 DEP 名单中有记录，一旦联网重装系统，有可能被原企业自动重新监管。建议交易前让卖家联系原企业从 DEP 中移除此设备。" = "⚠️ This Mac is listed in Apple's DEP program. After an online reinstall it may be automatically re-enrolled by the original organization. Ask the seller to have it removed from DEP before the sale.";
 "未能确认监管状态（命令执行异常），建议手动检查「系统设置 > 隐私与安全性 > 描述文件与设备管理」" = "Couldn't confirm management status (command failed). Check manually in System Settings > Privacy & Security > Profiles & Device Management";
@@ -441,3 +441,6 @@
 "正在扫描…" = "Scanning…";
 "已完成系统扫描" = "System scan complete";
 "重新扫描" = "Rescan";
+"自动（{0}）" = "Auto ({0})";
+"未检测到可用的摄像头。" = "No usable camera detected.";
+"语言" = "Language";
