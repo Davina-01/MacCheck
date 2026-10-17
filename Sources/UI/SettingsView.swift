@@ -9,9 +9,9 @@ enum AppTheme: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .system: return "跟随系统"
-        case .light: return "浅色"
-        case .dark: return "深色"
+        case .system: return L("跟随系统")
+        case .light: return L("浅色")
+        case .dark: return L("深色")
         }
     }
 
@@ -34,6 +34,7 @@ enum AppTheme: String, CaseIterable, Identifiable {
 
 struct SettingsView: View {
     @AppStorage("appTheme") private var themeRawValue = AppTheme.system.rawValue
+    @AppStorage(AppLanguage.storageKey) private var languageRawValue = AppLanguage.system.rawValue
 
     private var selectedTheme: Binding<AppTheme> {
         Binding {
@@ -48,9 +49,36 @@ struct SettingsView: View {
             VStack(alignment: .leading, spacing: DS.Spacing.lg) {
                 CheckHeader(
                     icon: "gearshape.fill",
-                    title: "设置",
-                    subtitle: "调整 MacCheck 的显示偏好。主题设置会保存在本机，下次打开自动沿用。"
+                    title: L("设置"),
+                    subtitle: L("调整 MacCheck 的显示偏好。设置会保存在本机，下次打开自动沿用。")
                 )
+
+                Card {
+                    HStack(alignment: .top, spacing: DS.Spacing.md) {
+                        Image(systemName: "globe")
+                            .font(.system(size: 20))
+                            .foregroundStyle(.tint)
+                            .frame(width: 28)
+
+                        VStack(alignment: .leading, spacing: DS.Spacing.sm) {
+                            // 标题同时写出三种语言，误切到看不懂的语言时也能找回来
+                            Text(L("界面语言") + " · Language · Langue").font(DS.Font.bodyEmphasis)
+                            Text(L("切换后界面立即更新，并自动重新扫描一次，让检测结果也换成新语言。已完成的交互测试结果保留原语言。"))
+                                .font(DS.Font.body)
+                                .foregroundStyle(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+
+                            Picker(L("界面语言"), selection: $languageRawValue) {
+                                ForEach(AppLanguage.allCases) { language in
+                                    Text(language.displayName).tag(language.rawValue)
+                                }
+                            }
+                            .pickerStyle(.segmented)
+                            .labelsHidden()
+                            .padding(.top, DS.Spacing.xs)
+                        }
+                    }
+                }
 
                 Card {
                     HStack(alignment: .top, spacing: DS.Spacing.md) {
@@ -60,13 +88,13 @@ struct SettingsView: View {
                             .frame(width: 28)
 
                         VStack(alignment: .leading, spacing: DS.Spacing.sm) {
-                            Text("外观主题").font(DS.Font.bodyEmphasis)
-                            Text("选择跟随系统，或固定使用浅色 / 深色模式。")
+                            Text(L("外观主题")).font(DS.Font.bodyEmphasis)
+                            Text(L("选择跟随系统，或固定使用浅色 / 深色模式。"))
                                 .font(DS.Font.body)
                                 .foregroundStyle(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
 
-                            Picker("外观主题", selection: selectedTheme) {
+                            Picker(L("外观主题"), selection: selectedTheme) {
                                 ForEach(AppTheme.allCases) { theme in
                                     Label(theme.title, systemImage: theme.icon)
                                         .tag(theme)
@@ -83,6 +111,6 @@ struct SettingsView: View {
             .frame(maxWidth: 720)
             .frame(maxWidth: .infinity, alignment: .center)
         }
-        .navigationTitle("设置")
+        .navigationTitle(L("设置"))
     }
 }

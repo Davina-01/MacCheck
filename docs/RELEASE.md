@@ -7,7 +7,9 @@
 - `CFBundleShortVersionString`: 对外版本号，例如 `1.0`
 - `CFBundleVersion`: 构建号，例如 `1`
 
-发布前请同步更新 `scripts/build_and_notarize.sh` 中的 `VERSION`。
+发布前请同步更新 `scripts/build_and_notarize.sh` 中的 `VERSION`，以及 `project.yml` 中的版本号。
+
+打包脚本会构建通用二进制（arm64 + x86_64）并用 `lipo` 校验，缺少任一架构会直接失败，避免再次发布只支持 Apple Silicon 的版本。
 
 ## 本地打包
 
@@ -18,7 +20,7 @@
 输出文件：
 
 ```text
-~/Desktop/MacCheck-1.2.dmg
+~/Desktop/MacCheck-1.3.dmg
 ```
 
 ## 签名和公证
@@ -46,10 +48,10 @@ export MACCHECK_NOTARY_PROFILE="maccheck-notary"
 ## GitHub Release
 
 ```bash
-gh release create v1.2 ~/Desktop/MacCheck-1.2.dmg \
-  --repo andyhuo520/MacCheck \
-  --title "MacCheck 1.2" \
-  --notes "首次发布：本地 Mac 验机、交互测试、报告导出。"
+gh release create v1.3 ~/Desktop/MacCheck-1.3.dmg \
+  --repo Davina-01/MacCheck \
+  --title "MacCheck 1.3" \
+  --notes "三语界面（中/英/法）、多国键盘布局、通用二进制，并修复原项目 issue #1–#5。"
 ```
 
 ## 发布后检查

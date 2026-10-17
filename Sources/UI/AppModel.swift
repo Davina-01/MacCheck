@@ -15,26 +15,26 @@ enum SidebarItem: String, CaseIterable, Identifiable, Hashable {
 
     var title: String {
         switch self {
-        case .overview: return "概览"
-        case .specs: return "硬件规格"
-        case .battery: return "电池"
-        case .security: return "安全与锁定"
-        case .storage: return "存储"
-        case .network: return "网络"
-        case .ports: return "接口"
-        case .keyboard: return "键盘"
-        case .screen: return "屏幕"
-        case .audio: return "扬声器 / 耳机"
-        case .microphone: return "麦克风"
-        case .camera: return "摄像头"
+        case .overview: return L("概览")
+        case .specs: return L("硬件规格")
+        case .battery: return L("电池")
+        case .security: return L("安全与锁定")
+        case .storage: return L("存储")
+        case .network: return L("网络")
+        case .ports: return L("接口")
+        case .keyboard: return L("键盘")
+        case .screen: return L("屏幕")
+        case .audio: return L("扬声器 / 耳机")
+        case .microphone: return L("麦克风")
+        case .camera: return L("摄像头")
         case .touchID: return "Touch ID"
-        case .trackpad: return "触控板"
-        case .performance: return "性能压测"
-        case .diskSpeed: return "硬盘测速"
-        case .portsLive: return "接口逐口实测"
-        case .aiModels: return "AI 大模型"
-        case .history: return "历史记录"
-        case .settings: return "设置"
+        case .trackpad: return L("触控板")
+        case .performance: return L("性能压测")
+        case .diskSpeed: return L("硬盘测速")
+        case .portsLive: return L("接口逐口实测")
+        case .aiModels: return L("AI 大模型")
+        case .history: return L("历史记录")
+        case .settings: return L("设置")
         }
     }
 
@@ -77,9 +77,9 @@ enum SidebarItem: String, CaseIterable, Identifiable, Hashable {
     var resultIDs: [String] {
         switch self {
         case .overview, .specs: return []
-        case .battery: return ["battery.cycleCount", "battery.health"]
+        case .battery: return ["battery.cycleCount.crosscheck", "battery.cycleCount", "battery.health"]
         case .security: return ["hardware.serial", "hardware.securityChip", "management.mdm", "management.appleID", "management.activationLock"]
-        case .storage: return ["storage"]
+        case .storage: return ["storage", "storage.lifetime"]
         case .network: return ["network.wifi", "network.bluetooth"]
         case .ports: return ["ports"]
         case .keyboard: return ["keyboard"]
@@ -184,13 +184,14 @@ final class AppModel: ObservableObject {
     // MARK: - 历史记录
 
     func currentBatteryCycles() -> Int? {
-        autoResults["battery.cycleCount"]?.rawDetails["循环次数"].flatMap { Int($0) }
+        autoResults["battery.cycleCount"]?.rawDetails[L("循环次数")].flatMap { Int($0) }
     }
 
     func currentBatteryHealth() -> String? {
         guard let summary = autoResults["battery.health"]?.summary,
-              let r = summary.range(of: #"\d+%"#, options: .regularExpression) else { return nil }
-        return String(summary[r])
+              let r = summary.range(of: #"\d+\s?%"#, options: .regularExpression) else { return nil }
+        // 法语写作 "85 %"（数字与百分号间有空格），统一去掉空白
+        return String(summary[r]).filter { !$0.isWhitespace }
     }
 
     func saveCurrentToHistory() {

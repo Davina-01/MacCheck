@@ -130,27 +130,27 @@ enum HardwareProbe {
         if ioSerial.isEmpty && spSerial.isEmpty {
             results.append(CheckResult(
                 id: "hardware.serial",
-                title: "序列号核验",
+                title: L("序列号核验"),
                 status: .warning,
-                summary: "未能读取到序列号，可能是虚拟机或权限受限环境",
+                summary: L("未能读取到序列号，可能是虚拟机或权限受限环境"),
                 rawDetails: ["IOKit": ioSerial, "system_profiler": spSerial]
             ))
         } else if !ioSerial.isEmpty && !spSerial.isEmpty && ioSerial != spSerial {
             results.append(CheckResult(
                 id: "hardware.serial",
-                title: "序列号核验",
+                title: L("序列号核验"),
                 status: .redFlag,
-                summary: "两种方式读到的序列号不一致，本机数据可能被篡改",
-                rawDetails: ["IOKit 读取": ioSerial, "system_profiler 读取": spSerial],
-                isRedFlagHeadline: "⛔ 序列号交叉核对不一致（IOKit 与系统信息给出的结果不同），本机关键信息可能被篡改，请勿仅凭本报告交易，建议用序列号去 Apple 官网保修查询页核对真实性。"
+                summary: L("两种方式读到的序列号不一致，本机数据可能被篡改"),
+                rawDetails: [L("IOKit 读取"): ioSerial, L("system_profiler 读取"): spSerial],
+                isRedFlagHeadline: L("⛔ 序列号交叉核对不一致（IOKit 与系统信息给出的结果不同），本机关键信息可能被篡改，请勿仅凭本报告交易，建议用序列号去 Apple 官网保修查询页核对真实性。")
             ))
         } else {
             results.append(CheckResult(
                 id: "hardware.serial",
-                title: "序列号核验",
+                title: L("序列号核验"),
                 status: .pass,
-                summary: "序列号 \(ioSerial.isEmpty ? spSerial : ioSerial)，两种读取方式一致，去 Apple 官网可查保修状态",
-                rawDetails: ["序列号": ioSerial.isEmpty ? spSerial : ioSerial, "机型标识交叉核对": model == spModel || spModel.isEmpty ? "一致" : "不一致（\(model) vs \(spModel)）"]
+                summary: L("序列号 {0}，两种读取方式一致，去 Apple 官网可查保修状态", ioSerial.isEmpty ? spSerial : ioSerial),
+                rawDetails: [L("序列号"): ioSerial.isEmpty ? spSerial : ioSerial, L("机型标识交叉核对"): model == spModel || spModel.isEmpty ? L("一致") : L("不一致（{0} vs {1}）", model, spModel)]
             ))
         }
 

@@ -19,7 +19,7 @@ cd "$(dirname "$0")/.."
 PROJECT="MacCheck.xcodeproj"
 SCHEME="MacCheck"
 APP_NAME="MacCheck"
-VERSION="1.2"
+VERSION="1.3"
 BUILD_DIR="build_release"
 DMG_OUT="$HOME/Desktop/${APP_NAME}-${VERSION}.dmg"
 
@@ -30,13 +30,27 @@ NOTARY_PROFILE="${MACCHECK_NOTARY_PROFILE:-maccheck-notary}"
 echo "▸ 生成工程"
 command -v xcodegen >/dev/null && xcodegen generate
 
-echo "▸ Release 构建"
+echo "▸ Release 构建（通用二进制 arm64 + x86_64）"
 rm -rf "$BUILD_DIR"
+# generic/platform=macOS + 显式 ARCHS：无论在哪种芯片的 Mac 上打包，都同时产出 Apple Silicon 与 Intel 两个架构。
+# 以前在 Apple Silicon 上打包只得到 arm64，Intel Mac 打开会提示"不支持此 Mac"（上游 issue #1）。
 xcodebuild -project "$PROJECT" -scheme "$SCHEME" -configuration Release \
+  -destination 'generic/platform=macOS' \
   -derivedDataPath "$BUILD_DIR" \
+  ARCHS="arm64 x86_64" ONLY_ACTIVE_ARCH=NO \
   CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO | tail -1
 
 APP="$BUILD_DIR/Build/Products/Release/${APP_NAME}.app"
+
+echo "▸ 校验架构"
+ARCHS_FOUND=$(lipo -archs "$APP/Contents/MacOS/${APP_NAME}")
+echo "  包含架构：$ARCHS_FOUND"
+for arch in arm64 x86_64; do
+  if ! echo "$ARCHS_FOUND" | grep -qw "$arch"; then
+    echo "✗ 缺少 $arch 架构，停止打包" >&2
+    exit 1
+  fi
+done
 
 HAS_CERT=$(security find-identity -v -p codesigning 2>/dev/null | grep -c "Developer ID Application" || true)
 if [ "$HAS_CERT" -gt 0 ]; then
@@ -55,7 +69,7 @@ STAGE=$(mktemp -d)
 cp -R "$APP" "$STAGE/"
 ln -s /Applications "$STAGE/Applications"
 rm -f "$DMG_OUT"
-hdiutil create -volname "${APP_NAME} 验机宝" -srcfolder "$STAGE" -ov -format UDZO "$DMG_OUT" | tail -1
+hdiutil create -volname "${APP_NAME}" -srcfolder "$STAGE" -ov -format UDZO "$DMG_OUT" | tail -1
 rm -rf "$STAGE"
 
 if [ "$SIGNED" -eq 1 ]; then
