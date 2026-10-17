@@ -40,19 +40,14 @@ final class CameraCheckModel: ObservableObject {
         }
         guard !session.isRunning else { isRunning = true; return }
         nonisolated(unsafe) let session = self.session
-        Task.detached(priority: .userInitiated) { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async {
             session.startRunning()   // 阻塞调用，放到后台线程
-            await self?.markRunning()
+            DispatchQueue.main.async { [weak self] in self?.isRunning = true }
         }
     }
 
-    private func markRunning() { isRunning = true }
-
     func stop() {
-        nonisolated(unsafe) let session = self.session
-        if session.isRunning {
-            Task.detached { session.stopRunning() }
-        }
+        if session.isRunning { session.stopRunning() }
         isRunning = false
     }
 }
