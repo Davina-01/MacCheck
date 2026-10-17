@@ -58,12 +58,19 @@ final class FullscreenTestPresenter {
 
     func dismiss() {
         guard let window else { return }
-        window.orderOut(nil)
-        window.contentView = nil
         self.window = nil
+        window.orderOut(nil)
         if let saved = savedPresentationOptions {
             NSApp.presentationOptions = saved
             savedPresentationOptions = nil
+        }
+        // 结束测试通常是由窗口里的按钮触发的。如果在按钮的点击处理过程中立刻拆掉 NSHostingView，
+        // AppKit 还在使用这些视图，会导致闪退。所以先隐藏窗口，等这次事件处理结束后再释放内容；
+        // 释放内容会触发 onDisappear，从而停止键盘监听。
+        Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 300_000_000)
+            window.contentView = nil
+            window.close()
         }
     }
 }

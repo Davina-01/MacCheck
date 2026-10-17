@@ -44,12 +44,14 @@ jobs:
       - name: Show compiler errors
         if: failure()
         run: |
-          grep -E "error:|warning: .*(Sendable|actor|isolat)" build.log | head -80 || true
-          # 打包脚本只输出 xcodebuild 的最后一行，失败时重新编译一次以显示完整错误
+          # 打包脚本只输出 xcodebuild 的最后一行，失败时重新编译并把错误转成 GitHub 注解（PR 页面可直接看到）
           xcodebuild -project MacCheck.xcodeproj -scheme MacCheck -configuration Release \
             -destination 'generic/platform=macOS' -derivedDataPath build_release \
             ARCHS="arm64 x86_64" ONLY_ACTIVE_ARCH=NO \
-            CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO 2>&1 | grep -E "error:" | head -80 || true
+            CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO > full-build.log 2>&1 || true
+          grep -E "^/.*:[0-9]+:[0-9]+: error: " full-build.log | sort -u | head -40 | \
+            sed -E "s#^${GITHUB_WORKSPACE}/##; s#^([^:]+):([0-9]+):([0-9]+): error: (.*)#::error file=\1,line=\2,col=\3::\4#"
+          grep -E "error:" full-build.log | grep -v "^/" | sort -u | head -20 | sed 's/^/::error::/'
 
       - name: Upload DMG artifact
         uses: actions/upload-artifact@v4

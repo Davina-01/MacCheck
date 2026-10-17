@@ -444,3 +444,4 @@
 "自动（{0}）" = "Auto ({0})";
 "未检测到可用的摄像头。" = "No usable camera detected.";
 "语言" = "Language";
+"测试 F1–F12 时请按住 fn（🌐）键，否则会触发亮度、音量、调度中心等系统功能。被系统拦截的键可直接点击键帽手动确认。" = "When testing F1–F12, hold the fn (🌐) key, otherwise brightness, volume, Mission Control and other system functions will be triggered. Keys intercepted by the system can be confirmed by clicking the keycap.";
