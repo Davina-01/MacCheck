@@ -71,7 +71,7 @@ jobs:
           VERSION="${GITHUB_REF_NAME#v}"
           VERSION="${VERSION%-im}"
           cat > notes.md <<EOF
-          **MacCheck IM ${VERSION}** — version multilingue (FR / EN / 中文) de [andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck), maintenue par [innomicro.fr](https://innomicro.fr).
+          **MacCheck IM ${VERSION}** — version multilingue (FR / EN / 中文) de [andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck), maintenue par [Davina-01](https://github.com/Davina-01).
 
           - Un seul DMG pour Mac Apple Silicon et Intel (binaire universel).
           - Signature ad hoc, sans notarisation Apple : au premier lancement, clic droit sur l'app → Ouvrir. Si macOS indique « endommagé » : \`sudo xattr -rd com.apple.quarantine /Applications/MacCheck.app\`
