@@ -3,13 +3,15 @@
 # MacCheck
 
 <p align="center">
-  <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=apple&label=T%C3%A9l%C3%A9charger%20pour%20macOS&color=0071e3" alt="Télécharger MacCheck pour macOS"></a>
+  <a href="https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=apple&label=T%C3%A9l%C3%A9charger%20pour%20macOS&color=0071e3" alt="Télécharger MacCheck pour macOS"></a>
 </p>
 
-<p align="center"><b>⬇️ <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg">Télécharger la dernière version (DMG)</a> · macOS 14+ · Apple Silicon et Intel · <a href="https://github.com/Davina-01/MacCheck/releases">Toutes les versions</a></b></p>
+<p align="center"><b>⬇️ <a href="https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg">Télécharger MacCheck IM 1.0.0 (DMG)</a> · macOS 14+ · Apple Silicon et Intel · <a href="https://github.com/Davina-01/MacCheck/releases">Toutes les versions</a></b></p>
 
 > [!NOTE]
 > **À propos de cette version.** Il s'agit d'une version modifiée (fork) du projet open source **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** créé par andyhuo520. Elle a été adaptée avec l'aide de l'IA pour proposer une **interface en trois langues (English / Français / 简体中文)** et **la prise en charge de nombreuses dispositions de clavier nationales**, ainsi que des corrections pour plusieurs problèmes signalés sur le projet d'origine. Ces modifications ayant été réalisées avec l'aide de l'IA et n'ayant pas encore été testées sur tous les modèles de Mac, **cette version peut contenir des bugs ou des erreurs. Vos retours sont les bienvenus** : [ouvrez une issue](../../issues) en indiquant votre modèle de Mac, votre version de macOS et ce que vous avez constaté.
+>
+> Problèmes connus : voir [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md).
 >
 > Ce fork est maintenu par **[innomicro.fr](https://innomicro.fr)**.
 >
@@ -71,7 +73,7 @@ MacCheck est un outil macOS local pour contrôler un Mac d'occasion, à l'achat,
 
 ## Installation
 
-1. Téléchargez **[MacCheck-IM.dmg](https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg)** (dernière version) ou choisissez une version sur la page **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)**. Le même fichier fonctionne sur les Mac Apple Silicon et Intel.
+1. Téléchargez **[MacCheck-IM-1.0.0.dmg](https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg)** (v1.0.0) ou choisissez une version sur la page **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)**. Le même fichier fonctionne sur les Mac Apple Silicon et Intel.
 2. Ouvrez le DMG et glissez `MacCheck.app` dans `Applications`.
 3. Les autorisations (caméra, micro, Bluetooth) sont demandées au besoin.
 
