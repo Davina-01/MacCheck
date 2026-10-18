@@ -3,7 +3,7 @@
 ## 版本号
 
 - App 版本号只在 `Sources/App/Info.plist` 的 `CFBundleShortVersionString` 维护，必须是纯数字 `x.y.z`（Apple 要求，否则无法公证、版本比较也会出错）；`project.yml` 同步修改。
-- `CFBundleVersion` 是构建号，每次发布 +1。
+- `CFBundleVersion` 是构建号，每次发布 +1，**永不归零**（1.0.0 重新编号时构建号仍从 8 继续），否则 macOS 可能把新版当成旧版。
 - innomicro.fr 版本标识只放在 App 之外：Git 标签 `vX.Y.Z-im`、安装包 `MacCheck-IM-X.Y.Z.dmg`、Release 标题 `MacCheck IM X.Y.Z`。
 - 规则（语义化版本）：修 bug → 第三位 +1；加功能 → 第二位 +1；重大不兼容改动 → 第一位 +1。
 
@@ -13,11 +13,11 @@
 2. 打标签并推送：
 
 ```bash
-git tag v1.3.1-im
-git push origin v1.3.1-im
+git tag v1.0.1-im
+git push origin v1.0.1-im
 ```
 
-3. GitHub Actions（`.github/workflows/release.yml`）会在 macOS 机器上构建通用二进制、校验 arm64 + x86_64、打包 `MacCheck-IM-1.3.1.dmg`，并自动创建 Release 上传安装包。标签版本号与 `Info.plist` 不一致时构建会失败。
+3. GitHub Actions（`.github/workflows/release.yml`）会在 macOS 机器上构建通用二进制、校验 arm64 + x86_64、打包 `MacCheck-IM-1.0.1.dmg`，并自动创建 Release 上传安装包。标签版本号与 `Info.plist` 不一致时构建会失败。
 
 每个 Pull Request 也会自动构建一次，可在 Actions 页面下载 DMG 测试。
 
@@ -59,9 +59,9 @@ export MACCHECK_NOTARY_PROFILE="maccheck-notary"
 
 ```bash
 # 通常由 GitHub Actions 自动完成；手动发布时：
-gh release create v1.3.0-im dist/MacCheck-IM-1.3.0.dmg \
+gh release create v1.0.0-im dist/MacCheck-IM-1.0.0.dmg \
   --repo Davina-01/MacCheck \
-  --title "MacCheck IM 1.3.0" \
+  --title "MacCheck IM 1.0.0" \
   --notes "三语界面（中/英/法）、多国键盘布局、通用二进制，并修复原项目 issue #1–#5。"
 ```
 
