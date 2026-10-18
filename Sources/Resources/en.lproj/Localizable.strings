@@ -446,12 +446,11 @@
 "语言" = "Language";
 "测试 F1–F12 时请按住 fn（🌐）键，否则会触发亮度、音量、调度中心等系统功能。被系统拦截的键可直接点击键帽手动确认。" = "When testing F1–F12, hold the fn (🌐) key, otherwise brightness, volume, Mission Control and other system functions will be triggered. Keys intercepted by the system can be confirmed by clicking the keycap.";
 "关于" = "About";
-"本软件基于 andyhuo520 在 GitHub 上的开源项目 MacCheck，由 INNOMICRO 在 AI 协助下修改，新增中 / 英 / 法三种界面语言、多国键盘布局支持，并修复了若干问题。" = "This app is based on MacCheck, an open-source project by andyhuo520 on GitHub. It was modified by INNOMICRO with AI assistance to add a Chinese / English / French interface and support for many national keyboard layouts, and to fix several issues.";
-"INNOMICRO 是位于巴黎的批发商，主营 PC 屏幕与苹果零件。" = "INNOMICRO is a Paris-based wholesaler specializing in PC screens and Apple parts.";
 "原版开源项目" = "Original open-source project";
 "本修改版（开源）" = "This modified version (open source)";
-"本版本仍在调试中，可能存在 bug，欢迎在 GitHub 反馈问题。原版的全部功劳归原作者所有。" = "This version is still being debugged and may contain bugs; feedback on GitHub is welcome. All credit for the original app goes to its author.";
 "退出：长按 esc 1.2 秒结束测试并保存 · ⌘Q 直接退出 MacCheck" = "Exit: hold esc for 1.2 s to finish and save · ⌘Q quits MacCheck";
 "退出：Esc 结束测试并保存 · ⌘Q 直接退出 MacCheck" = "Exit: Esc to finish and save · ⌘Q quits MacCheck";
 "免责声明" = "Disclaimer";
 "本软件按现状免费提供，不提供任何担保。检测结果仅供参考，不能替代专业检测或 Apple 官方查询，部分问题可能无法被检测到；生成的报告不构成 INNOMICRO 或作者出具的证书或质保。在法律允许的最大范围内，原作者、贡献者及 INNOMICRO 不对因使用本软件产生的任何损失（包括买卖决定、数据丢失或设备损坏）承担责任，但不影响消费者依法享有的强制性权利。硬盘测速与性能压测会对机器施加负载，使用前请备份数据。本项目与 Apple Inc. 无关联，Apple、Mac、macOS 等为 Apple Inc. 的商标。" = "This software is provided free of charge \"as is\", without any warranty. Results are indicative only, do not replace a professional inspection or Apple's official checks, and some problems may go undetected; generated reports are not a certificate or warranty from INNOMICRO or the authors. To the fullest extent permitted by law, the original author, contributors and INNOMICRO are not liable for any loss arising from use of this software (including purchase or sale decisions, data loss or damage to equipment); this does not affect mandatory consumer rights. The disk speed and stress tests put load on the machine; back up your data first. This project is not affiliated with Apple Inc.; Apple, Mac and macOS are trademarks of Apple Inc.";
+"本软件基于 andyhuo520 在 GitHub 上的开源项目 MacCheck，由 [INNOMICRO](https://innomicro.fr) 在 AI 协助下修改，新增中 / 英 / 法三种界面语言、多国键盘布局支持，并修复了若干问题。" = "This app is based on MacCheck, an open-source project by andyhuo520 on GitHub, modified by [INNOMICRO](https://innomicro.fr) with AI assistance to add a Chinese / English / French interface and support for many national keyboard layouts, and to fix several issues.";
+"本版本仍在调试中，可能存在 bug，欢迎在 GitHub 反馈问题。感谢 andyhuo520 开源原版项目。" = "This version is still being debugged and may contain bugs; feedback on GitHub is welcome. Thanks to andyhuo520 for open-sourcing the original project.";

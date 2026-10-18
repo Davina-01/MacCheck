@@ -16,7 +16,7 @@
 >
 > Results are indicative and are not a warranty: see the **Disclaimer** at the bottom of this page.
 >
-> All credit for the original app goes to its author. The upstream repository does not include a license file; if you plan to redistribute this app commercially, please contact the original author first.
+> Thanks to andyhuo520 for open-sourcing the original project. The upstream repository does not include a license file; if you plan to redistribute this app commercially, please contact the original author first.
 
 MacCheck is a local macOS inspection tool for buying and selling used Macs, in-store checks and self-diagnosis. It automatically reads hardware specs, battery, storage, network, security and port information, and provides interactive tests for the keyboard, display, audio, microphone, camera, trackpad, disk speed and more. Results can be exported as a PDF or PNG report.
 

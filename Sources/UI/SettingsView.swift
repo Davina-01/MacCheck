@@ -120,10 +120,9 @@ struct SettingsView: View {
 
     private static let originalRepo = "https://github.com/andyhuo520/MacCheck"
     private static let forkRepo = "https://github.com/Davina-01/MacCheck"
-    private static let website = "https://innomicro.fr"
-
-    private var appVersion: String {
-        (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
+    /// 把含 Markdown 链接的文案转成可点击的富文本；解析失败时按纯文本显示。
+    private func markdown(_ text: String) -> AttributedString {
+        (try? AttributedString(markdown: text)) ?? AttributedString(text)
     }
 
     private var aboutCard: some View {
@@ -136,25 +135,19 @@ struct SettingsView: View {
 
                 VStack(alignment: .leading, spacing: DS.Spacing.sm) {
                     Text(L("关于")).font(DS.Font.bodyEmphasis)
-                    Text("MacCheck IM \(appVersion)")
-                        .font(DS.Font.caption).foregroundStyle(.secondary)
 
-                    Text(L("本软件基于 andyhuo520 在 GitHub 上的开源项目 MacCheck，由 INNOMICRO 在 AI 协助下修改，新增中 / 英 / 法三种界面语言、多国键盘布局支持，并修复了若干问题。"))
+                    // INNOMICRO 在文中是指向 innomicro.fr 的超链接（Markdown 链接，译文中同样保留）
+                    Text(markdown(L("本软件基于 andyhuo520 在 GitHub 上的开源项目 MacCheck，由 [INNOMICRO](https://innomicro.fr) 在 AI 协助下修改，新增中 / 英 / 法三种界面语言、多国键盘布局支持，并修复了若干问题。")))
                         .font(DS.Font.body)
-                        .fixedSize(horizontal: false, vertical: true)
-                    Text(L("INNOMICRO 是位于巴黎的批发商，主营 PC 屏幕与苹果零件。"))
-                        .font(DS.Font.body)
-                        .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
 
                     VStack(alignment: .leading, spacing: DS.Spacing.xs) {
                         aboutLink(L("原版开源项目"), Self.originalRepo, icon: "chevron.left.forwardslash.chevron.right")
                         aboutLink(L("本修改版（开源）"), Self.forkRepo, icon: "arrow.triangle.branch")
-                        aboutLink("INNOMICRO", Self.website, icon: "globe")
                     }
                     .padding(.top, DS.Spacing.xs)
 
-                    Text(L("本版本仍在调试中，可能存在 bug，欢迎在 GitHub 反馈问题。原版的全部功劳归原作者所有。"))
+                    Text(L("本版本仍在调试中，可能存在 bug，欢迎在 GitHub 反馈问题。感谢 andyhuo520 开源原版项目。"))
                         .font(DS.Font.caption)
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
