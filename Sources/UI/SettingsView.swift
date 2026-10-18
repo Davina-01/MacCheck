@@ -106,7 +106,6 @@ struct SettingsView: View {
                         }
                     }
                 }
-            }
 
                 aboutCard
             }
