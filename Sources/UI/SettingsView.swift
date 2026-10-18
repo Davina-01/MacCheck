@@ -159,6 +159,15 @@ struct SettingsView: View {
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.top, DS.Spacing.xs)
+
+                    VStack(alignment: .leading, spacing: DS.Spacing.xs) {
+                        Text(L("免责声明")).font(DS.Font.caption.weight(.semibold))
+                        Text(L("本软件按现状免费提供，不提供任何担保。检测结果仅供参考，不能替代专业检测或 Apple 官方查询，部分问题可能无法被检测到；生成的报告不构成 INNOMICRO 或作者出具的证书或质保。在法律允许的最大范围内，原作者、贡献者及 INNOMICRO 不对因使用本软件产生的任何损失（包括买卖决定、数据丢失或设备损坏）承担责任，但不影响消费者依法享有的强制性权利。硬盘测速与性能压测会对机器施加负载，使用前请备份数据。本项目与 Apple Inc. 无关联，Apple、Mac、macOS 等为 Apple Inc. 的商标。"))
+                            .font(DS.Font.caption)
+                            .foregroundStyle(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .padding(.top, DS.Spacing.sm)
                 }
             }
         }
