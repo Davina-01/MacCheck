@@ -445,3 +445,11 @@
 "未检测到可用的摄像头。" = "Aucune caméra disponible détectée.";
 "语言" = "Langue";
 "测试 F1–F12 时请按住 fn（🌐）键，否则会触发亮度、音量、调度中心等系统功能。被系统拦截的键可直接点击键帽手动确认。" = "Pour tester F1–F12, maintenez la touche fn (🌐), sinon la luminosité, le volume, Mission Control et d'autres fonctions système se déclenchent. Les touches interceptées par le système peuvent être validées en cliquant dessus.";
+"关于" = "À propos";
+"本软件基于 andyhuo520 在 GitHub 上的开源项目 MacCheck，由 INNOMICRO 在 AI 协助下修改，新增中 / 英 / 法三种界面语言、多国键盘布局支持，并修复了若干问题。" = "Cette application est basée sur MacCheck, un projet open source d'andyhuo520 sur GitHub. Elle a été modifiée par INNOMICRO avec l'aide de l'IA pour ajouter une interface en chinois / anglais / français et la prise en charge de nombreuses dispositions de clavier, et pour corriger plusieurs problèmes.";
+"INNOMICRO 是位于巴黎的批发商，主营 PC 屏幕与苹果零件。" = "INNOMICRO est un grossiste basé à Paris, spécialisé dans les écrans de PC et les pièces détachées Apple.";
+"原版开源项目" = "Projet open source d'origine";
+"本修改版（开源）" = "Cette version modifiée (open source)";
+"本版本仍在调试中，可能存在 bug，欢迎在 GitHub 反馈问题。原版的全部功劳归原作者所有。" = "Cette version est encore en cours de débogage et peut contenir des bugs ; vos retours sur GitHub sont les bienvenus. Tout le mérite de l'application d'origine revient à son auteur.";
+"退出：长按 esc 1.2 秒结束测试并保存 · ⌘Q 直接退出 MacCheck" = "Quitter : maintenez esc 1,2 s pour terminer et enregistrer · ⌘Q quitte MacCheck";
+"退出：Esc 结束测试并保存 · ⌘Q 直接退出 MacCheck" = "Quitter : Échap pour terminer et enregistrer · ⌘Q quitte MacCheck";

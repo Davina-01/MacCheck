@@ -40,6 +40,7 @@ struct KeyboardCheckView: View {
             Text(L("依次按下每一个按键，亮起代表已检测。长按 esc 键 1.2 秒可随时结束测试。"))
                 .font(.system(size: 14))
                 .foregroundStyle(.white.opacity(0.7))
+            exitHint
             // macOS 会在 App 收到按键之前先执行亮度、音量、调度中心等功能，普通 App 无法拦截，
             // 所以醒目提示：按住 fn 再按 F 键，发送的就是真正的 F1–F12。
             Label(L("测试 F1–F12 时请按住 fn（🌐）键，否则会触发亮度、音量、调度中心等系统功能。被系统拦截的键可直接点击键帽手动确认。"),
@@ -56,6 +57,16 @@ struct KeyboardCheckView: View {
                 .font(.system(size: 13))
                 .foregroundStyle(.white.opacity(0.6))
         }
+    }
+
+    /// 常驻的退出提示：全屏测试中随时可见。
+    private var exitHint: some View {
+        Label(L("退出：长按 esc 1.2 秒结束测试并保存 · ⌘Q 直接退出 MacCheck"), systemImage: "escape")
+            .font(.system(size: 12, weight: .medium))
+            .foregroundStyle(.white.opacity(0.85))
+            .padding(.horizontal, 10)
+            .padding(.vertical, 4)
+            .background(Capsule().fill(Color.white.opacity(0.12)))
     }
 
     private var settingsBar: some View {

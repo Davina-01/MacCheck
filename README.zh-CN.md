@@ -8,7 +8,11 @@
 > [!NOTE]
 > **关于本版本。** 这是开源项目 **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)**（作者 andyhuo520）的修改版（Fork）。本版本在 AI 协助下修改，新增了 **中 / 英 / 法三种界面语言** 和 **多国键盘布局支持**，并修复了原项目中用户反馈的若干问题。由于改动由 AI 协助完成，且尚未在所有 Mac 机型上实测，**本版本可能存在 bug 或错误，欢迎反馈**：请 [提交 issue](../../issues)，注明你的 Mac 机型、macOS 版本和遇到的现象。
 >
-> 本 Fork 由 **[InnoMicro](https://innomicro.fr)** 维护，我们是位于巴黎的 PC 屏幕与苹果零件批发商，欢迎访问 **[innomicro.fr](https://innomicro.fr)**。
+> 本 Fork 由 **[INNOMICRO](https://innomicro.fr)**（位于巴黎的批发商，主营 PC 屏幕与苹果零件）维护，欢迎访问 **[innomicro.fr](https://innomicro.fr)**。
+>
+> 开源链接：
+> - 原版项目：[github.com/andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)
+> - 本修改版：[github.com/Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)
 >
 > 原版 App 的全部功劳归原作者所有。原仓库没有附带许可证文件，如计划将本 App 用于商业分发，请先联系原作者确认授权。
 
@@ -167,4 +171,4 @@ docs/
 ## 致谢
 
 - 原版 App：**[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)**，作者 andyhuo520
-- 多语言与多键盘布局版本：由 **[InnoMicro](https://innomicro.fr)**（巴黎）在 AI 协助下维护
+- 多语言与多键盘布局版本：**[Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)**，由 **[INNOMICRO](https://innomicro.fr)**（位于巴黎的 PC 屏幕与苹果零件批发商）在 AI 协助下维护

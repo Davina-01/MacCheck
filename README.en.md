@@ -8,7 +8,11 @@
 > [!NOTE]
 > **About this version.** This is a modified fork of the open-source project **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** by andyhuo520. It was adapted with the help of AI to add a **three-language interface (English / Français / 简体中文)** and **support for many national keyboard layouts**, plus fixes for several issues reported upstream. Because these changes were AI-assisted and have not yet been tested on every Mac model, **this version may contain bugs or mistakes. Feedback is very welcome**: please [open an issue](../../issues) describing your Mac model, macOS version and what you saw.
 >
-> This fork is maintained by **[InnoMicro](https://innomicro.fr)**, a Paris-based wholesaler of PC screens and Apple parts. Visit **[innomicro.fr](https://innomicro.fr)**.
+> This fork is maintained by **[INNOMICRO](https://innomicro.fr)** (a Paris-based wholesaler specializing in PC screens and Apple parts). Visit **[innomicro.fr](https://innomicro.fr)**.
+>
+> Open-source links:
+> - Original project: [github.com/andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)
+> - This modified version: [github.com/Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)
 >
 > All credit for the original app goes to its author. The upstream repository does not include a license file; if you plan to redistribute this app commercially, please contact the original author first.
 
@@ -167,4 +171,4 @@ docs/
 ## Credits
 
 - Original app: **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** by andyhuo520
-- Multilingual and multi-layout version: maintained by **[InnoMicro](https://innomicro.fr)**, Paris, with AI assistance
+- Multilingual and multi-layout version: **[Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)**, maintained by **[INNOMICRO](https://innomicro.fr)** (Paris-based wholesaler of PC screens and Apple parts), with AI assistance
