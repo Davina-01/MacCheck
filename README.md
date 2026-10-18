@@ -14,6 +14,8 @@
 > - Projet d'origine : [github.com/andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)
 > - Cette version modifiée : [github.com/Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)
 >
+> Les résultats sont indicatifs et ne constituent pas une garantie : voir l'**Avertissement et limitation de responsabilité** en bas de page.
+>
 > Tout le mérite de l'application d'origine revient à son auteur. Le dépôt d'origine ne contient pas de fichier de licence ; si vous souhaitez redistribuer cette application à des fins commerciales, contactez d'abord l'auteur d'origine.
 
 MacCheck est un outil macOS local pour contrôler un Mac d'occasion, à l'achat, à la vente, en boutique ou en autodiagnostic. Il lit automatiquement les caractéristiques matérielles, la batterie, le stockage, le réseau, la sécurité et les ports, et propose des tests interactifs pour le clavier, l'écran, le son, le micro, la caméra, le trackpad, la vitesse du disque, etc. Les résultats s'exportent en rapport PDF ou PNG.
@@ -167,6 +169,17 @@ docs/
   RELEASE.md
   assets/
 ```
+
+## Avertissement et limitation de responsabilité
+
+- **Logiciel fourni « en l'état ».** MacCheck est distribué gratuitement, sans aucune garantie, expresse ou implicite, notamment quant à l'exactitude des résultats, à l'absence de bugs ou à l'adéquation à un usage particulier. Cette version modifiée est encore en cours de débogage.
+- **Résultats indicatifs uniquement.** Les résultats ne remplacent ni l'inspection d'un professionnel, ni les vérifications officielles d'Apple (couverture de garantie, verrouillage d'activation, réparations). Certaines anomalies peuvent ne pas être détectées, par exemple une inscription MDM contournée par une méthode inconnue, des pièces non d'origine ou des données falsifiées. Un résultat « normal » ne garantit pas l'état réel de l'appareil.
+- **Pas une certification.** Les rapports générés par MacCheck ne constituent ni un certificat, ni une expertise, ni une garantie délivrés par INNOMICRO ou par les auteurs.
+- **Tests matériels.** Certains tests sollicitent la machine : le test de disque écrit puis supprime un fichier temporaire de 1 Go, le test de charge fait chauffer le processeur. Sauvegardez vos données avant utilisation ; vous utilisez ces tests à vos propres risques.
+- **Responsabilité.** Dans toute la mesure permise par la loi applicable, ni l'auteur du projet d'origine, ni les contributeurs, ni INNOMICRO ne sauraient être tenus responsables d'un dommage direct ou indirect résultant de l'utilisation de ce logiciel, notamment d'une décision d'achat ou de vente, d'une perte de données ou d'un dommage matériel. Cette clause ne limite pas les droits dont vous bénéficiez de manière impérative en tant que consommateur.
+- **Projet d'origine.** L'auteur du projet d'origine (andyhuo520) n'est pas responsable des modifications apportées dans cette version.
+- **Marques.** Ce projet n'est ni affilié à Apple Inc., ni approuvé ou sponsorisé par elle. Apple, Mac, MacBook, macOS, Touch ID et Thunderbolt sont des marques d'Apple Inc. ou de leurs propriétaires respectifs.
+- **Données.** L'application fonctionne entièrement en local ; aucune donnée n'est envoyée à INNOMICRO ni à des tiers.
 
 ## Crédits
 
