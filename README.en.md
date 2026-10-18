@@ -3,13 +3,15 @@
 # MacCheck
 
 <p align="center">
-  <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=apple&label=Download%20for%20macOS&color=0071e3" alt="Download MacCheck for macOS"></a>
+  <a href="https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=apple&label=Download%20for%20macOS&color=0071e3" alt="Download MacCheck for macOS"></a>
 </p>
 
-<p align="center"><b>⬇️ <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg">Download the latest version (DMG)</a> · macOS 14+ · Apple Silicon & Intel · <a href="https://github.com/Davina-01/MacCheck/releases">All releases</a></b></p>
+<p align="center"><b>⬇️ <a href="https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg">Download MacCheck IM 1.0.0 (DMG)</a> · macOS 14+ · Apple Silicon & Intel · <a href="https://github.com/Davina-01/MacCheck/releases">All releases</a></b></p>
 
 > [!NOTE]
 > **About this version.** This is a modified fork of the open-source project **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** by andyhuo520. It was adapted with the help of AI to add a **three-language interface (English / Français / 简体中文)** and **support for many national keyboard layouts**, plus fixes for several issues reported upstream. Because these changes were AI-assisted and have not yet been tested on every Mac model, **this version may contain bugs or mistakes. Feedback is very welcome**: please [open an issue](../../issues) describing your Mac model, macOS version and what you saw.
+>
+> Known issues: see [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md).
 >
 > This fork is maintained by **[innomicro.fr](https://innomicro.fr)**.
 >
@@ -71,7 +73,7 @@ Also fixed: the battery cycle-count tamper check never appeared in the report.
 
 ## Installation
 
-1. Download **[MacCheck-IM.dmg](https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg)** (latest version) or pick a version on the **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)** page. The same file works on Apple Silicon and Intel Macs.
+1. Download **[MacCheck-IM-1.0.0.dmg](https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg)** (v1.0.0) or pick a version on the **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)** page. The same file works on Apple Silicon and Intel Macs.
 2. Open the DMG and drag `MacCheck.app` into `Applications`.
 3. Permissions (camera, microphone, Bluetooth) are requested when needed.
 

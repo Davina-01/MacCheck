@@ -3,13 +3,15 @@
 # MacCheck 验机宝
 
 <p align="center">
-  <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=apple&label=%E4%B8%8B%E8%BD%BD%20macOS%20%E7%89%88&color=0071e3" alt="下载 MacCheck macOS 版"></a>
+  <a href="https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=apple&label=%E4%B8%8B%E8%BD%BD%20macOS%20%E7%89%88&color=0071e3" alt="下载 MacCheck macOS 版"></a>
 </p>
 
-<p align="center"><b>⬇️ <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg">直接下载最新版本（DMG）</a> · macOS 14+ · 支持 Apple Silicon 与 Intel · <a href="https://github.com/Davina-01/MacCheck/releases">全部版本</a></b></p>
+<p align="center"><b>⬇️ <a href="https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg">直接下载 MacCheck IM 1.0.0（DMG）</a> · macOS 14+ · 支持 Apple Silicon 与 Intel · <a href="https://github.com/Davina-01/MacCheck/releases">全部版本</a></b></p>
 
 > [!NOTE]
 > **关于本版本。** 这是开源项目 **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)**（作者 andyhuo520）的修改版（Fork）。本版本在 AI 协助下修改，新增了 **中 / 英 / 法三种界面语言** 和 **多国键盘布局支持**，并修复了原项目中用户反馈的若干问题。由于改动由 AI 协助完成，且尚未在所有 Mac 机型上实测，**本版本可能存在 bug 或错误，欢迎反馈**：请 [提交 issue](../../issues)，注明你的 Mac 机型、macOS 版本和遇到的现象。
+>
+> 已知问题：见 [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md)。
 >
 > 本 Fork 由 **[innomicro.fr](https://innomicro.fr)** 维护。
 >
@@ -71,7 +73,7 @@ MacCheck 是一款面向二手 Mac 交易、门店验机和个人自检的 macOS
 
 ## 安装
 
-1. 直接下载最新版 **[MacCheck-IM.dmg](https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg)**，或到 **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)** 页面下载 `MacCheck-IM-x.y.z.dmg`，同一个文件同时支持 Apple Silicon 和 Intel Mac。
+1. 直接下载 v1.0.0 **[MacCheck-IM-1.0.0.dmg](https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg)**，或到 **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)** 页面下载 `MacCheck-IM-x.y.z.dmg`，同一个文件同时支持 Apple Silicon 和 Intel Mac。
 2. 打开 DMG，将 `MacCheck.app` 拖到 `Applications`。
 3. 摄像头、麦克风、蓝牙等权限会按需请求。
 
