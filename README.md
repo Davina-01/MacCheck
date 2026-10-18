@@ -3,15 +3,15 @@
 # MacCheck
 
 <p align="center">
-  <a href="https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI%2BPHBhdGggZD0iTTEyIDN2MTIiLz48cGF0aCBkPSJNNyAxMGw1IDUgNS01Ii8%2BPHBhdGggZD0iTTUgMjBoMTQiLz48L3N2Zz4%3D&label=T%C3%A9l%C3%A9charger%20pour%20macOS&color=0071e3" alt="Télécharger MacCheck pour macOS"></a>
+  <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI%2BPHBhdGggZD0iTTEyIDN2MTIiLz48cGF0aCBkPSJNNyAxMGw1IDUgNS01Ii8%2BPHBhdGggZD0iTTUgMjBoMTQiLz48L3N2Zz4%3D&label=T%C3%A9l%C3%A9charger%20pour%20macOS&color=0071e3" alt="Télécharger MacCheck pour macOS"></a>
 </p>
 
-<p align="center"><b>⬇️ <a href="https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg">Télécharger MacCheck IM 1.0.0 (DMG)</a> · macOS 14+ · Apple Silicon et Intel · <a href="https://github.com/Davina-01/MacCheck/releases">Toutes les versions</a></b></p>
+<p align="center"><b>⬇️ <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg">Télécharger la dernière version (DMG)</a> · macOS 14+ · Apple Silicon et Intel · <a href="https://github.com/Davina-01/MacCheck/releases">Toutes les versions</a></b></p>
 
 > [!NOTE]
-> **À propos de cette version.** Il s'agit d'une version modifiée (fork) du projet open source **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** créé par andyhuo520. Elle a été adaptée avec l'aide de l'IA pour proposer une **interface en trois langues (English / Français / 简体中文)** et **la prise en charge de nombreuses dispositions de clavier nationales**, ainsi que des corrections pour plusieurs problèmes signalés sur le projet d'origine. Ces modifications ayant été réalisées avec l'aide de l'IA et n'ayant pas encore été testées sur tous les modèles de Mac, **cette version peut contenir des bugs ou des erreurs. Vos retours sont les bienvenus** : [ouvrez une issue](../../issues) en indiquant votre modèle de Mac, votre version de macOS et ce que vous avez constaté.
+> **À propos de cette version.** Il s'agit d'une version modifiée (fork) du projet open source **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** créé par [andyhuo520](https://github.com/andyhuo520). Elle a été adaptée avec l'aide de l'IA pour proposer une **interface en trois langues (English / Français / 简体中文)** et **la prise en charge de nombreuses dispositions de clavier nationales**, ainsi que des corrections pour plusieurs problèmes signalés sur le projet d'origine. Ces modifications ayant été réalisées avec l'aide de l'IA et n'ayant pas encore été testées sur tous les modèles de Mac, **cette version peut contenir des bugs ou des erreurs. Vos retours sont les bienvenus** : [ouvrez une issue](../../issues) en indiquant votre modèle de Mac, votre version de macOS et ce que vous avez constaté.
 >
-> Ce fork est maintenu par **[innomicro.fr](https://innomicro.fr)**.
+> Ce fork est maintenu par **[Davina-01](https://github.com/Davina-01)**.
 >
 > Liens open source :
 > - Projet d'origine : [github.com/andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)
@@ -19,7 +19,7 @@
 >
 > Les résultats sont indicatifs et ne constituent pas une garantie : voir l'**Avertissement et limitation de responsabilité** en bas de page.
 >
-> Merci à andyhuo520 d'avoir publié le projet d'origine en open source. Le dépôt d'origine ne contient pas de fichier de licence ; si vous souhaitez redistribuer cette application à des fins commerciales, contactez d'abord l'auteur d'origine.
+> Merci à [andyhuo520](https://github.com/andyhuo520) d'avoir publié le projet d'origine en open source. Le dépôt d'origine ne contient pas de fichier de licence ; si vous souhaitez redistribuer cette application à des fins commerciales, contactez d'abord l'auteur d'origine.
 
 MacCheck est un outil macOS local pour contrôler un Mac d'occasion, à l'achat, à la vente, en boutique ou en autodiagnostic. Il lit automatiquement les caractéristiques matérielles, la batterie, le stockage, le réseau, la sécurité et les ports, et propose des tests interactifs pour le clavier, l'écran, le son, le micro, la caméra, le trackpad, la vitesse du disque, etc. Les résultats s'exportent en rapport PDF ou PNG.
 
@@ -71,7 +71,7 @@ MacCheck est un outil macOS local pour contrôler un Mac d'occasion, à l'achat,
 
 ## Installation
 
-1. Téléchargez **[MacCheck-IM-1.0.0.dmg](https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg)** (v1.0.0) ou choisissez une version sur la page **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)**. Le même fichier fonctionne sur les Mac Apple Silicon et Intel.
+1. Téléchargez **[MacCheck-IM.dmg](https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg)** (dernière version) ou choisissez une version sur la page **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)**. Le même fichier fonctionne sur les Mac Apple Silicon et Intel.
 2. Ouvrez le DMG et glissez `MacCheck.app` dans `Applications`.
 3. Les autorisations (caméra, micro, Bluetooth) sont demandées au besoin.
 
@@ -142,7 +142,7 @@ et enregistrez les identifiants de notarisation avec `xcrun notarytool store-cre
 ## Numéros de version
 
 - Version de l'app (affichée dans macOS) : `x.y.z` en chiffres uniquement, comme l'exige Apple. Ce fork a sa propre numérotation, qui commence à 1.0.0 (indépendante de celle du projet d'origine).
-- Version innomicro.fr : tag Git `vX.Y.Z-im`, fichier `MacCheck-IM-X.Y.Z.dmg`, release « MacCheck IM X.Y.Z ».
+- Version Davina-01 : tag Git `vX.Y.Z-im`, fichier `MacCheck-IM-X.Y.Z.dmg`, release « MacCheck IM X.Y.Z ».
 - Règle : correctif → `1.0.1`, nouvelle fonctionnalité → `1.1.0`, changement majeur → `2.0.0`.
 
 ## Traductions
@@ -177,14 +177,14 @@ docs/
 
 - **Logiciel fourni « en l'état ».** MacCheck est distribué gratuitement, sans aucune garantie, expresse ou implicite, notamment quant à l'exactitude des résultats, à l'absence de bugs ou à l'adéquation à un usage particulier. Cette version modifiée est encore en cours de débogage.
 - **Résultats indicatifs uniquement.** Les résultats ne remplacent ni l'inspection d'un professionnel, ni les vérifications officielles d'Apple (couverture de garantie, verrouillage d'activation, réparations). Certaines anomalies peuvent ne pas être détectées, par exemple une inscription MDM contournée par une méthode inconnue, des pièces non d'origine ou des données falsifiées. Un résultat « normal » ne garantit pas l'état réel de l'appareil.
-- **Pas une certification.** Les rapports générés par MacCheck ne constituent ni un certificat, ni une expertise, ni une garantie délivrés par innomicro.fr ou par les auteurs.
+- **Pas une certification.** Les rapports générés par MacCheck ne constituent ni un certificat, ni une expertise, ni une garantie délivrés par Davina-01 ou par les auteurs.
 - **Tests matériels.** Certains tests sollicitent la machine : le test de disque écrit puis supprime un fichier temporaire de 1 Go, le test de charge fait chauffer le processeur. Sauvegardez vos données avant utilisation ; vous utilisez ces tests à vos propres risques.
-- **Responsabilité.** Dans toute la mesure permise par la loi applicable, ni l'auteur du projet d'origine, ni les contributeurs, ni innomicro.fr ne sauraient être tenus responsables d'un dommage direct ou indirect résultant de l'utilisation de ce logiciel, notamment d'une décision d'achat ou de vente, d'une perte de données ou d'un dommage matériel. Cette clause ne limite pas les droits dont vous bénéficiez de manière impérative en tant que consommateur.
-- **Projet d'origine.** L'auteur du projet d'origine (andyhuo520) n'est pas responsable des modifications apportées dans cette version.
+- **Responsabilité.** Dans toute la mesure permise par la loi applicable, ni l'auteur du projet d'origine, ni les contributeurs, ni Davina-01 ne sauraient être tenus responsables d'un dommage direct ou indirect résultant de l'utilisation de ce logiciel, notamment d'une décision d'achat ou de vente, d'une perte de données ou d'un dommage matériel. Cette clause ne limite pas les droits dont vous bénéficiez de manière impérative en tant que consommateur.
+- **Projet d'origine.** L'auteur du projet d'origine ([andyhuo520](https://github.com/andyhuo520)) n'est pas responsable des modifications apportées dans cette version.
 - **Marques.** Ce projet n'est ni affilié à Apple Inc., ni approuvé ou sponsorisé par elle. Apple, Mac, MacBook, macOS, Touch ID et Thunderbolt sont des marques d'Apple Inc. ou de leurs propriétaires respectifs.
-- **Données.** L'application fonctionne entièrement en local ; aucune donnée n'est envoyée à innomicro.fr ni à des tiers.
+- **Données.** L'application fonctionne entièrement en local ; aucune donnée n'est envoyée à Davina-01 ni à des tiers.
 
 ## Crédits
 
-- Application d'origine : **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** par andyhuo520
-- Version multilingue et multi-dispositions : **[Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)**, maintenue par **[innomicro.fr](https://innomicro.fr)**, avec l'aide de l'IA
+- Application d'origine : **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** par [andyhuo520](https://github.com/andyhuo520)
+- Version multilingue et multi-dispositions : **[Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)**, maintenue par **[Davina-01](https://github.com/Davina-01)**, avec l'aide de l'IA

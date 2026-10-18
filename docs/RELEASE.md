@@ -4,7 +4,7 @@
 
 - App 版本号只在 `Sources/App/Info.plist` 的 `CFBundleShortVersionString` 维护，必须是纯数字 `x.y.z`（Apple 要求，否则无法公证、版本比较也会出错）；`project.yml` 同步修改。
 - `CFBundleVersion` 是构建号，每次发布 +1，**永不归零**（1.0.0 重新编号时构建号仍从 8 继续），否则 macOS 可能把新版当成旧版。
-- innomicro.fr 版本标识只放在 App 之外：Git 标签 `vX.Y.Z-im`、安装包 `MacCheck-IM-X.Y.Z.dmg`、Release 标题 `MacCheck IM X.Y.Z`。
+- Davina-01 版本标识只放在 App 之外：Git 标签 `vX.Y.Z-im`、安装包 `MacCheck-IM-X.Y.Z.dmg`、Release 标题 `MacCheck IM X.Y.Z`。
 - 规则（语义化版本）：修 bug → 第三位 +1；加功能 → 第二位 +1；重大不兼容改动 → 第一位 +1。
 
 ## 自动发布（推荐）

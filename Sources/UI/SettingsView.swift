@@ -136,8 +136,8 @@ struct SettingsView: View {
                 VStack(alignment: .leading, spacing: DS.Spacing.sm) {
                     Text(L("关于")).font(DS.Font.bodyEmphasis)
 
-                    // innomicro.fr 在文中是超链接（Markdown 链接，译文中同样保留）
-                    Text(markdown(L("本软件基于 andyhuo520 在 GitHub 上的开源项目 MacCheck，由 [innomicro.fr](https://innomicro.fr) 在 AI 协助下修改，新增中 / 英 / 法三种界面语言、多国键盘布局支持，并修复了若干问题。")))
+                    // andyhuo520 与 Davina-01 在文中是指向各自 GitHub 主页的超链接（Markdown 链接，译文中同样保留）
+                    Text(markdown(L("本软件基于 [andyhuo520](https://github.com/andyhuo520) 在 GitHub 上的开源项目 MacCheck，由 [Davina-01](https://github.com/Davina-01) 在 AI 协助下修改，新增中 / 英 / 法三种界面语言、多国键盘布局支持，并修复了若干问题。")))
                         .font(DS.Font.body)
                         .fixedSize(horizontal: false, vertical: true)
 
@@ -147,7 +147,7 @@ struct SettingsView: View {
                     }
                     .padding(.top, DS.Spacing.xs)
 
-                    Text(L("本版本仍在调试中，可能存在 bug，欢迎在 GitHub 反馈问题。感谢 andyhuo520 开源原版项目。"))
+                    Text(markdown(L("本版本仍在调试中，可能存在 bug，欢迎在 GitHub 反馈问题。感谢 [andyhuo520](https://github.com/andyhuo520) 开源原版项目。")))
                         .font(DS.Font.caption)
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
@@ -155,7 +155,7 @@ struct SettingsView: View {
 
                     VStack(alignment: .leading, spacing: DS.Spacing.xs) {
                         Text(L("免责声明")).font(DS.Font.caption.weight(.semibold))
-                        Text(L("本软件按现状免费提供，不提供任何担保。检测结果仅供参考，不能替代专业检测或 Apple 官方查询，部分问题可能无法被检测到；生成的报告不构成 innomicro.fr 或作者出具的证书或质保。在法律允许的最大范围内，原作者、贡献者及 innomicro.fr 不对因使用本软件产生的任何损失（包括买卖决定、数据丢失或设备损坏）承担责任，但不影响消费者依法享有的强制性权利。硬盘测速与性能压测会对机器施加负载，使用前请备份数据。本项目与 Apple Inc. 无关联，Apple、Mac、macOS 等为 Apple Inc. 的商标。"))
+                        Text(L("本软件按现状免费提供，不提供任何担保。检测结果仅供参考，不能替代专业检测或 Apple 官方查询，部分问题可能无法被检测到；生成的报告不构成 Davina-01 或作者出具的证书或质保。在法律允许的最大范围内，原作者、贡献者及 Davina-01 不对因使用本软件产生的任何损失（包括买卖决定、数据丢失或设备损坏）承担责任，但不影响消费者依法享有的强制性权利。硬盘测速与性能压测会对机器施加负载，使用前请备份数据。本项目与 Apple Inc. 无关联，Apple、Mac、macOS 等为 Apple Inc. 的商标。"))
                             .font(DS.Font.caption)
                             .foregroundStyle(.secondary)
                             .fixedSize(horizontal: false, vertical: true)

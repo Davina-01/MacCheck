@@ -22,7 +22,7 @@ APP_NAME="MacCheck"
 # 版本号只在 Sources/App/Info.plist 维护一处（纯数字 x.y.z，macOS 要求）
 VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Sources/App/Info.plist)
 BUILD_DIR="build_release"
-# innomicro.fr 版本的安装包统一命名为 MacCheck-IM-x.y.z.dmg，输出到 dist/（可用 MACCHECK_OUTPUT_DIR 覆盖）
+# Davina-01 版本的安装包统一命名为 MacCheck-IM-x.y.z.dmg，输出到 dist/（可用 MACCHECK_OUTPUT_DIR 覆盖）
 OUTPUT_DIR="${MACCHECK_OUTPUT_DIR:-dist}"
 mkdir -p "$OUTPUT_DIR"
 DMG_OUT="$OUTPUT_DIR/${APP_NAME}-IM-${VERSION}.dmg"
