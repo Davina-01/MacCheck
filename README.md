@@ -8,7 +8,11 @@
 > [!NOTE]
 > **À propos de cette version.** Il s'agit d'une version modifiée (fork) du projet open source **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** créé par andyhuo520. Elle a été adaptée avec l'aide de l'IA pour proposer une **interface en trois langues (English / Français / 简体中文)** et **la prise en charge de nombreuses dispositions de clavier nationales**, ainsi que des corrections pour plusieurs problèmes signalés sur le projet d'origine. Ces modifications ayant été réalisées avec l'aide de l'IA et n'ayant pas encore été testées sur tous les modèles de Mac, **cette version peut contenir des bugs ou des erreurs. Vos retours sont les bienvenus** : [ouvrez une issue](../../issues) en indiquant votre modèle de Mac, votre version de macOS et ce que vous avez constaté.
 >
-> Ce fork est maintenu par **[InnoMicro](https://innomicro.fr)**, grossiste parisien en écrans de PC et pièces détachées Apple. Rendez-nous visite sur **[innomicro.fr](https://innomicro.fr)**.
+> Ce fork est maintenu par **[INNOMICRO](https://innomicro.fr)** (grossiste basé à Paris, spécialisé dans les écrans de PC et les pièces détachées Apple). Rendez-nous visite sur **[innomicro.fr](https://innomicro.fr)**.
+>
+> Liens open source :
+> - Projet d'origine : [github.com/andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)
+> - Cette version modifiée : [github.com/Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)
 >
 > Tout le mérite de l'application d'origine revient à son auteur. Le dépôt d'origine ne contient pas de fichier de licence ; si vous souhaitez redistribuer cette application à des fins commerciales, contactez d'abord l'auteur d'origine.
 
@@ -167,4 +171,4 @@ docs/
 ## Crédits
 
 - Application d'origine : **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** par andyhuo520
-- Version multilingue et multi-dispositions : maintenue par **[InnoMicro](https://innomicro.fr)**, Paris, avec l'aide de l'IA
+- Version multilingue et multi-dispositions : **[Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)**, maintenue par **[INNOMICRO](https://innomicro.fr)** (grossiste parisien en écrans de PC et pièces détachées Apple), avec l'aide de l'IA

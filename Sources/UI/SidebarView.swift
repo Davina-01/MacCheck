@@ -56,10 +56,8 @@ struct SidebarView: View {
             }
             .pickerStyle(.inline)
         } label: {
-            Label(AppLanguage.selected == .system
-                    ? "\(AppLanguage.system.displayName) · \(AppLanguage.effective.displayName)"
-                    : AppLanguage.selected.displayName,
-                  systemImage: "globe")
+            // 只显示当前实际使用的语言名称
+            Label(AppLanguage.effective.displayName, systemImage: "globe")
                 .font(DS.Font.caption)
         }
         .menuStyle(.borderlessButton)
