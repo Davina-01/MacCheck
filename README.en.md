@@ -24,7 +24,7 @@ MacCheck is a local macOS inspection tool for buying and selling used Macs, in-s
 
 ![MacCheck overview](docs/assets/overview-demo.png)
 
-## What's new in this fork (v1.3.0)
+## What's new in this fork (v1.0.0)
 
 **Interface in three languages.** English, Français and 简体中文, switchable at any time in **Settings → Interface language**, or following the macOS language automatically. Reports, check results, permission prompts and device names (e.g. "MacBook Pro (14 pouces, 2021)") are all translated.
 
@@ -125,7 +125,7 @@ The app is built at `build_release/Build/Products/Release/MacCheck.app`.
 ./scripts/build_and_notarize.sh
 ```
 
-The script regenerates the project if `xcodegen` is installed, builds a universal Release binary and verifies both architectures, signs and notarizes it if a Developer ID certificate is available (otherwise it produces an ad-hoc DMG for local use), and writes `dist/MacCheck-IM-1.3.0.dmg`.
+The script regenerates the project if `xcodegen` is installed, builds a universal Release binary and verifies both architectures, signs and notarizes it if a Developer ID certificate is available (otherwise it produces an ad-hoc DMG for local use), and writes `dist/MacCheck-IM-1.0.0.dmg`.
 
 For public distribution, configure:
 
@@ -138,9 +138,9 @@ and store notarization credentials with `xcrun notarytool store-credentials`.
 
 ## Version numbers
 
-- App version (shown by macOS): numeric `x.y.z` only, as Apple requires. This fork continues the original numbering from 1.3.0.
+- App version (shown by macOS): numeric `x.y.z` only, as Apple requires. This fork has its own numbering, starting at 1.0.0 (independent of the original project's).
 - innomicro.fr release: Git tag `vX.Y.Z-im`, file `MacCheck-IM-X.Y.Z.dmg`, release "MacCheck IM X.Y.Z".
-- Rule: bug fix → `1.3.1`, new feature → `1.4.0`, breaking change → `2.0.0`.
+- Rule: bug fix → `1.0.1`, new feature → `1.1.0`, breaking change → `2.0.0`.
 
 ## Translations
 

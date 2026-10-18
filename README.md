@@ -24,7 +24,7 @@ MacCheck est un outil macOS local pour contrôler un Mac d'occasion, à l'achat,
 
 ![Vue d'ensemble MacCheck](docs/assets/overview-demo.png)
 
-## Nouveautés de ce fork (v1.3.0)
+## Nouveautés de ce fork (v1.0.0)
 
 **Interface en trois langues.** English, Français et 简体中文, modifiable à tout moment dans **Réglages → Langue de l'interface**, ou suivant automatiquement la langue de macOS. Rapports, résultats, demandes d'autorisation et noms d'appareils (ex. « MacBook Pro (14 pouces, 2021) ») sont traduits.
 
@@ -125,7 +125,7 @@ L'app est générée dans `build_release/Build/Products/Release/MacCheck.app`.
 ./scripts/build_and_notarize.sh
 ```
 
-Le script régénère le projet si `xcodegen` est installé, compile un binaire Release universel et vérifie les deux architectures, signe et fait notariser l'app si un certificat Developer ID est disponible (sinon il produit un DMG ad hoc pour un usage local), puis écrit `dist/MacCheck-IM-1.3.0.dmg`.
+Le script régénère le projet si `xcodegen` est installé, compile un binaire Release universel et vérifie les deux architectures, signe et fait notariser l'app si un certificat Developer ID est disponible (sinon il produit un DMG ad hoc pour un usage local), puis écrit `dist/MacCheck-IM-1.0.0.dmg`.
 
 Pour une distribution publique, configurez :
 
@@ -138,9 +138,9 @@ et enregistrez les identifiants de notarisation avec `xcrun notarytool store-cre
 
 ## Numéros de version
 
-- Version de l'app (affichée dans macOS) : `x.y.z` en chiffres uniquement, comme l'exige Apple. Ce fork poursuit la numérotation d'origine à partir de 1.3.0.
+- Version de l'app (affichée dans macOS) : `x.y.z` en chiffres uniquement, comme l'exige Apple. Ce fork a sa propre numérotation, qui commence à 1.0.0 (indépendante de celle du projet d'origine).
 - Version innomicro.fr : tag Git `vX.Y.Z-im`, fichier `MacCheck-IM-X.Y.Z.dmg`, release « MacCheck IM X.Y.Z ».
-- Règle : correctif → `1.3.1`, nouvelle fonctionnalité → `1.4.0`, changement majeur → `2.0.0`.
+- Règle : correctif → `1.0.1`, nouvelle fonctionnalité → `1.1.0`, changement majeur → `2.0.0`.
 
 ## Traductions
 

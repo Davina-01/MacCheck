@@ -8,7 +8,7 @@
 xcodebuild -project MacCheck.xcodeproj -scheme MacCheck -configuration Release -destination 'generic/platform=macOS' -derivedDataPath build_release ARCHS="arm64 x86_64" ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO
 lipo -archs build_release/Build/Products/Release/MacCheck.app/Contents/MacOS/MacCheck   # 应输出 x86_64 arm64
 ./scripts/build_and_notarize.sh
-hdiutil verify dist/MacCheck-IM-1.3.0.dmg
+hdiutil verify dist/MacCheck-IM-1.0.0.dmg
 ```
 
 验证项：
@@ -46,7 +46,7 @@ hdiutil verify dist/MacCheck-IM-1.3.0.dmg
 | 硬盘测速 | 开始读写采样 | 读写结果可显示，未出现异常失败 |
 | 接口逐口实测 | 插拔外设并记录 | 目标接口均可识别外设 |
 
-## v1.3.0 新增项目复核
+## v1.0.0 新增项目复核
 
 | 项目 | 操作 | 通过标准 |
 | --- | --- | --- |
