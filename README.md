@@ -2,8 +2,11 @@
 
 # MacCheck
 
-> [!WARNING]
-> **Version en cours de débogage : de nombreux bugs sont encore présents.** Cette version est toujours en phase de test et de correction. Certaines fonctions peuvent ne pas marcher ou faire planter l'application. Merci de signaler tout problème dans les [issues](../../issues).
+<p align="center">
+  <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=apple&label=T%C3%A9l%C3%A9charger%20pour%20macOS&color=0071e3" alt="Télécharger MacCheck pour macOS"></a>
+</p>
+
+<p align="center"><b>⬇️ <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg">Télécharger la dernière version (DMG)</a> · macOS 14+ · Apple Silicon et Intel · <a href="https://github.com/Davina-01/MacCheck/releases">Toutes les versions</a></b></p>
 
 > [!NOTE]
 > **À propos de cette version.** Il s'agit d'une version modifiée (fork) du projet open source **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** créé par andyhuo520. Elle a été adaptée avec l'aide de l'IA pour proposer une **interface en trois langues (English / Français / 简体中文)** et **la prise en charge de nombreuses dispositions de clavier nationales**, ainsi que des corrections pour plusieurs problèmes signalés sur le projet d'origine. Ces modifications ayant été réalisées avec l'aide de l'IA et n'ayant pas encore été testées sur tous les modèles de Mac, **cette version peut contenir des bugs ou des erreurs. Vos retours sont les bienvenus** : [ouvrez une issue](../../issues) en indiquant votre modèle de Mac, votre version de macOS et ce que vous avez constaté.
@@ -20,9 +23,9 @@
 
 MacCheck est un outil macOS local pour contrôler un Mac d'occasion, à l'achat, à la vente, en boutique ou en autodiagnostic. Il lit automatiquement les caractéristiques matérielles, la batterie, le stockage, le réseau, la sécurité et les ports, et propose des tests interactifs pour le clavier, l'écran, le son, le micro, la caméra, le trackpad, la vitesse du disque, etc. Les résultats s'exportent en rapport PDF ou PNG.
 
-> Confidentialité : MacCheck fonctionne entièrement sur votre Mac et n'envoie jamais de numéro de série, de résultat ni de rapport. Les captures de ce README proviennent d'appareils réels (interface chinoise d'origine), avec les numéros de série masqués.
+> Confidentialité : MacCheck fonctionne entièrement sur votre Mac et n'envoie jamais de numéro de série, de résultat ni de rapport. Les captures de ce README proviennent d'un Mac réel, avec le numéro de série masqué.
 
-![Vue d'ensemble MacCheck](docs/assets/overview-demo.png)
+![Vue d'ensemble MacCheck](docs/assets/fr-overview.png)
 
 ## Nouveautés de ce fork (v1.0.0)
 
@@ -56,7 +59,7 @@ MacCheck est un outil macOS local pour contrôler un Mac d'occasion, à l'achat,
 - Export du rapport en PDF / PNG en un clic et historique pour comparer plus tard
 - Apparence claire, sombre ou système
 
-![Caractéristiques MacCheck](docs/assets/hardware-specs-real.png)
+![Caractéristiques MacCheck](docs/assets/fr-hardware-specs.png)
 
 ## Configuration requise
 
@@ -68,7 +71,7 @@ MacCheck est un outil macOS local pour contrôler un Mac d'occasion, à l'achat,
 
 ## Installation
 
-1. Téléchargez `MacCheck-IM-x.y.z.dmg` depuis la page **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)**. Le même fichier fonctionne sur les Mac Apple Silicon et Intel.
+1. Téléchargez **[MacCheck-IM.dmg](https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg)** (dernière version) ou choisissez une version sur la page **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)**. Le même fichier fonctionne sur les Mac Apple Silicon et Intel.
 2. Ouvrez le DMG et glissez `MacCheck.app` dans `Applications`.
 3. Les autorisations (caméra, micro, Bluetooth) sont demandées au besoin.
 
@@ -88,9 +91,9 @@ sudo xattr -rd com.apple.quarantine /Applications/MacCheck.app
 4. Cliquez sur **Enregistrer dans l'historique** pour conserver un instantané de l'inspection.
 5. Cliquez sur **Exporter le rapport** et choisissez PNG ou PDF.
 
-![Contrôles de sécurité MacCheck](docs/assets/security-real.png)
+![Contrôles de sécurité MacCheck](docs/assets/fr-security.png)
 
-![Test du clavier MacCheck](docs/assets/testing-demo.png)
+![Test du clavier MacCheck](docs/assets/fr-keyboard.png)
 
 ## Compiler depuis les sources
 

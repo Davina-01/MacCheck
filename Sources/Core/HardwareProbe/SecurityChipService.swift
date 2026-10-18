@@ -54,7 +54,7 @@ enum SecurityChipService {
             id: "hardware.securityChip",
             title: L("安全芯片"),
             status: .pass,
-            summary: "\(tier.title) —— \(explanation)",
+            summary: "\(tier.title) — \(explanation)",
             rawDetails: [L("安全芯片档位"): tier.title]
         )]
     }

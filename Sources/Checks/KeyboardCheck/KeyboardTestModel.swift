@@ -317,9 +317,27 @@ final class KeyboardTestModel: ObservableObject {
     }
 
     private func checkForStuckKeys() {
+        releaseModifiersNoLongerHeld()
         let now = Date()
         for (code, start) in pressStartTimes where now.timeIntervalSince(start) > Self.stuckThresholdSeconds {
             stuckKeyCodes.insert(code)
+        }
+    }
+
+    /// 修饰键的松开事件有时收不到（例如用 ⌘⇧4 截图时，松开事件被系统截图工具拿走），
+    /// 导致 ⌘ / ⇧ 被误判为卡键。每秒用硬件的实时按键状态核对一次，实际已松开的就清除。
+    private func releaseModifiersNoLongerHeld() {
+        let flags = CGEventSource.flagsState(.hidSystemState)
+        for code in pressedKeyCodes {
+            let stillDown: Bool
+            if code == 63 {
+                stillDown = flags.contains(.maskSecondaryFn)
+            } else if let mask = Self.modifierDeviceMasks[code] {
+                stillDown = flags.rawValue & UInt64(mask) != 0
+            } else {
+                continue
+            }
+            if !stillDown { keyUp(code) }
         }
     }
 

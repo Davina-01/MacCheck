@@ -172,7 +172,7 @@ struct OverviewView: View {
                 Text(item.title).font(DS.Font.bodyEmphasis)
                 Spacer()
                 if let status = model.status(for: item) {
-                    Text(model.results(for: item).first?.summary ?? status.label)
+                    Text(model.headlineResult(for: item)?.summary ?? status.label)
                         .font(DS.Font.caption).foregroundStyle(.secondary)
                         .lineLimit(1).truncationMode(.tail).frame(maxWidth: 320, alignment: .trailing)
                     StatusDot(status: status)
