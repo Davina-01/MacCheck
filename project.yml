@@ -29,7 +29,7 @@ targets:
       path: Sources/App/Info.plist
       properties:
         CFBundleDisplayName: MacCheck 验机宝
-        CFBundleShortVersionString: "1.0.1"
+        CFBundleShortVersionString: "1.0.0"
         CFBundleVersion: "9"
         NSCameraUsageDescription: 用于摄像头体检项，检查画面是否清晰、有无坏点。
         NSMicrophoneUsageDescription: 用于麦克风体检项，检查录音是否正常。
