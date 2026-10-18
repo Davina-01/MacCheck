@@ -11,8 +11,6 @@
 > [!NOTE]
 > **About this version.** This is a modified fork of the open-source project **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** by andyhuo520. It was adapted with the help of AI to add a **three-language interface (English / Français / 简体中文)** and **support for many national keyboard layouts**, plus fixes for several issues reported upstream. Because these changes were AI-assisted and have not yet been tested on every Mac model, **this version may contain bugs or mistakes. Feedback is very welcome**: please [open an issue](../../issues) describing your Mac model, macOS version and what you saw.
 >
-> Known issues: see [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md).
->
 > This fork is maintained by **[innomicro.fr](https://innomicro.fr)**.
 >
 > Open-source links:
