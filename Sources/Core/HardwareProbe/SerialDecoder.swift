@@ -29,10 +29,10 @@ enum SerialDecoder {
 
     /// 给出人话的生产日期结论。随机化序列号返回明确说明而非空。
     static func productionDescription(serial: String) -> String {
-        guard !serial.isEmpty else { return "序列号未知" }
+        guard !serial.isEmpty else { return L("序列号未知") }
         if let m = manufacture(from: serial) {
-            return "约 \(m.year) 年第 \(m.week) 周（据序列号估算）"
+            return L("约 {0} 年第 {1} 周（据序列号估算）", m.year, m.week)
         }
-        return "序列号已随机化，无法本地推算；请以 Apple 官网保修信息为准"
+        return L("序列号已随机化，无法本地推算；请以 Apple 官网保修信息为准")
     }
 }

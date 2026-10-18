@@ -12,27 +12,27 @@ enum NetworkService {
                 id: "network.wifi",
                 title: "Wi-Fi",
                 status: .unsupported,
-                summary: "未检测到 Wi-Fi 网卡"
+                summary: L("未检测到 Wi-Fi 网卡")
             )
         }
 
         var details: [String: String] = [:]
         let powerOn = iface.powerOn()
-        details["Wi-Fi 开关"] = powerOn ? "已开启" : "已关闭"
-        if let hw = iface.hardwareAddress() { details["网卡 MAC"] = hw }
+        details[L("Wi-Fi 开关")] = powerOn ? L("已开启") : L("已关闭")
+        if let hw = iface.hardwareAddress() { details[L("网卡 MAC")] = hw }
 
         if let ssid = iface.ssid() {
-            details["当前网络"] = ssid
+            details[L("当前网络")] = ssid
             let rssi = iface.rssiValue()
-            details["信号强度(RSSI)"] = "\(rssi) dBm"
-            details["发射速率"] = "\(iface.transmitRate()) Mbps"
-            details["频段"] = phyModeString(iface.activePHYMode())
-            let quality = rssi >= -60 ? "信号良好" : (rssi >= -75 ? "信号一般" : "信号偏弱")
+            details[L("信号强度(RSSI)")] = "\(rssi) dBm"
+            details[L("发射速率")] = "\(iface.transmitRate()) Mbps"
+            details[L("频段")] = phyModeString(iface.activePHYMode())
+            let quality = rssi >= -60 ? L("信号良好") : (rssi >= -75 ? L("信号一般") : L("信号偏弱"))
             return CheckResult(
                 id: "network.wifi",
                 title: "Wi-Fi",
                 status: .pass,
-                summary: "已连接「\(ssid)」· \(rssi) dBm · \(quality)",
+                summary: L("已连接「{0}」· {1} dBm · {2}", ssid, rssi, quality),
                 rawDetails: details
             )
         }
@@ -41,7 +41,7 @@ enum NetworkService {
             id: "network.wifi",
             title: "Wi-Fi",
             status: powerOn ? .pass : .warning,
-            summary: powerOn ? "Wi-Fi 已开启但未连接网络，网卡工作正常" : "Wi-Fi 当前处于关闭状态",
+            summary: powerOn ? L("Wi-Fi 已开启但未连接网络，网卡工作正常") : L("Wi-Fi 当前处于关闭状态"),
             rawDetails: details
         )
     }
@@ -54,8 +54,8 @@ enum NetworkService {
         case .mode11n: return "802.11n (Wi-Fi 4)"
         case .mode11ac: return "802.11ac (Wi-Fi 5)"
         case .mode11ax: return "802.11ax (Wi-Fi 6/6E)"
-        case .modeNone: return "未连接"
-        @unknown default: return "未知"
+        case .modeNone: return L("未连接")
+        @unknown default: return L("未知")
         }
     }
 
@@ -71,9 +71,9 @@ enum NetworkService {
         else {
             return CheckResult(
                 id: "network.bluetooth",
-                title: "蓝牙",
+                title: L("蓝牙"),
                 status: .warning,
-                summary: "未能读取蓝牙控制器状态"
+                summary: L("未能读取蓝牙控制器状态")
             )
         }
 
@@ -83,19 +83,19 @@ enum NetworkService {
         let isOn = state.contains("on")
 
         var details: [String: String] = [
-            "控制器状态": isOn ? "已开启" : "已关闭",
-            "蓝牙芯片": chipset,
-            "蓝牙地址": address,
+            L("控制器状态"): isOn ? L("已开启") : L("已关闭"),
+            L("蓝牙芯片"): chipset,
+            L("蓝牙地址"): address,
         ]
         if let connected = first["device_connected"] as? [[String: Any]] {
-            details["已连接设备数"] = "\(connected.count)"
+            details[L("已连接设备数")] = "\(connected.count)"
         }
 
         return CheckResult(
             id: "network.bluetooth",
-            title: "蓝牙",
+            title: L("蓝牙"),
             status: isOn ? .pass : .warning,
-            summary: isOn ? "蓝牙控制器正常工作（\(chipset)）" : "蓝牙当前处于关闭状态，无法验证射频",
+            summary: isOn ? L("蓝牙控制器正常工作（{0}）", chipset) : L("蓝牙当前处于关闭状态，无法验证射频"),
             rawDetails: details
         )
     }

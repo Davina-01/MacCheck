@@ -52,17 +52,17 @@ enum PortService {
         let tb = thunderboltDevices()
 
         var details: [String: String] = [:]
-        details["已连接 USB 设备"] = usb.isEmpty ? "无" : usb.joined(separator: "、")
-        details["已连接雷雳设备"] = tb.isEmpty ? "无" : tb.joined(separator: "、")
+        details[L("已连接 USB 设备")] = usb.isEmpty ? L("无") : usb.joined(separator: L("、"))
+        details[L("已连接雷雳设备")] = tb.isEmpty ? L("无") : tb.joined(separator: L("、"))
 
         let total = usb.count + tb.count
         let summary = total == 0
-            ? "当前未接入任何 USB / 雷雳外设 —— 请依次插入设备以验证各接口"
-            : "当前检测到 \(total) 个外接设备，接口通信正常"
+            ? L("当前未接入任何 USB / 雷雳外设 —— 请依次插入设备以验证各接口")
+            : L("当前检测到 {0} 个外接设备，接口通信正常", total)
 
         return [CheckResult(
             id: "ports",
-            title: "接口 (USB / 雷雳)",
+            title: L("接口 (USB / 雷雳)"),
             status: .pass,
             summary: summary,
             rawDetails: details

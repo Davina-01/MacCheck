@@ -5,34 +5,43 @@ import AVFoundation
 @MainActor
 final class CameraCheckModel: ObservableObject {
     @Published var permissionDenied = false
+    @Published var noCamera = false
     @Published var isRunning = false
     let session = AVCaptureSession()
 
+    /// 修复闪退：以前用回调版 requestAccess，系统在后台线程回调，而闭包写在 @MainActor 类里，
+    /// Swift 6 会把它视为"必须在主线程执行"，运行时检查失败直接终止 App。
+    /// 现在用 async 版本，await 返回后自动回到主线程。
     func start() {
-        AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
-            Task { @MainActor in
-                guard let self else { return }
-                if granted { self.configure() } else { self.permissionDenied = true }
+        Task {
+            let granted: Bool
+            switch AVCaptureDevice.authorizationStatus(for: .video) {
+            case .authorized: granted = true
+            case .notDetermined: granted = await AVCaptureDevice.requestAccess(for: .video)
+            default: granted = false
             }
+            if granted { configure() } else { permissionDenied = true }
         }
     }
 
     private func configure() {
-        session.beginConfiguration()
-        session.sessionPreset = .high
-        if let device = AVCaptureDevice.default(for: .video),
-           let input = try? AVCaptureDeviceInput(device: device),
-           session.canAddInput(input) {
-            session.addInput(input)
-        } else {
-            permissionDenied = true
+        permissionDenied = false
+        // 再次打开此页面时 session 里已有输入，直接重新启动即可（以前会重复添加失败并误报"权限被拒绝"）
+        if session.inputs.isEmpty {
+            guard let device = AVCaptureDevice.default(for: .video),
+                  let input = try? AVCaptureDeviceInput(device: device) else {
+                noCamera = true
+                return
+            }
+            session.beginConfiguration()
+            session.sessionPreset = .high
+            if session.canAddInput(input) { session.addInput(input) }
             session.commitConfiguration()
-            return
         }
-        session.commitConfiguration()
+        guard !session.isRunning else { isRunning = true; return }
         nonisolated(unsafe) let session = self.session
         DispatchQueue.global(qos: .userInitiated).async {
-            session.startRunning()
+            session.startRunning()   // 阻塞调用，放到后台线程
             DispatchQueue.main.async { [weak self] in self?.isRunning = true }
         }
     }
@@ -69,13 +78,16 @@ struct CameraCheckView: View {
         VStack(alignment: .leading, spacing: DS.Spacing.lg) {
             CheckHeader(
                 icon: "camera.fill",
-                title: "摄像头测试",
-                subtitle: "观察下方预览画面：是否清晰、有无坏点、色斑或明显偏色。"
+                title: L("摄像头测试"),
+                subtitle: L("观察下方预览画面：是否清晰、有无坏点、色斑或明显偏色。")
             )
 
-            if model.permissionDenied {
+            if model.noCamera {
+                InlineNotice(icon: "video.slash", tint: .secondary,
+                    text: L("未检测到可用的摄像头。"))
+            } else if model.permissionDenied {
                 InlineNotice(icon: "exclamationmark.triangle.fill", tint: .orange,
-                    text: "摄像头权限被拒绝。请在「系统设置 › 隐私与安全性 › 摄像头」中允许 MacCheck。")
+                    text: L("摄像头权限被拒绝。请在「系统设置 › 隐私与安全性 › 摄像头」中允许 MacCheck。"))
             } else {
                 CameraPreview(session: model.session)
                     .frame(height: 320)
@@ -86,23 +98,23 @@ struct CameraCheckView: View {
             DS.Divider()
 
             HStack(spacing: DS.Spacing.md) {
-                Text("测试结果：").font(DS.Font.body).foregroundStyle(.secondary)
-                Button("画面清晰正常") {
+                Text(L("测试结果：")).font(DS.Font.body).foregroundStyle(.secondary)
+                Button(L("画面清晰正常")) {
                     model.stop()
-                    onComplete(CheckResult(id: "camera", title: "摄像头", status: .pass,
-                        summary: "摄像头画面清晰，无坏点或异常"))
+                    onComplete(CheckResult(id: "camera", title: L("摄像头"), status: .pass,
+                        summary: L("摄像头画面清晰，无坏点或异常")))
                 }
                 .buttonStyle(.borderedProminent)
-                Button("画面异常") {
+                Button(L("画面异常")) {
                     model.stop()
-                    onComplete(CheckResult(id: "camera", title: "摄像头", status: .warning,
-                        summary: "用户反馈画面异常，建议进一步检查摄像头"))
+                    onComplete(CheckResult(id: "camera", title: L("摄像头"), status: .warning,
+                        summary: L("用户反馈画面异常，建议进一步检查摄像头")))
                 }
                 .buttonStyle(.bordered)
             }
         }
         .padding(DS.Spacing.xl)
-        .checkPane("摄像头")
+        .checkPane(L("摄像头"))
         .onAppear { model.start() }
         .onDisappear { model.stop() }
     }

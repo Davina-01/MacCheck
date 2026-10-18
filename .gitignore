@@ -16,3 +16,7 @@ xcuserdata/
 MacCheck-验机报告-*.pdf
 MacCheck-验机报告-*.png
 docs/assets/*-raw.png
+
+# Packaged output
+dist/
+build.log

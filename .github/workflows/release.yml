@@ -1,0 +1,90 @@
+name: Build & Release
+
+# - Pull request / main：在 macOS 上完整编译一次（通用二进制），并把 DMG 作为构建产物供下载测试
+# - 推送 vX.Y.Z-im 标签：编译、打包 MacCheck-IM-X.Y.Z.dmg，并创建 GitHub Release 上传安装包
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ['v*-im']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Check tag matches app version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Sources/App/Info.plist)
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          TAG_VERSION="${TAG_VERSION%-im}"
+          echo "Info.plist: $APP_VERSION  tag: $TAG_VERSION"
+          if [ "$APP_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match CFBundleShortVersionString $APP_VERSION"
+            exit 1
+          fi
+
+      - name: Build universal app and DMG
+        run: |
+          set -o pipefail
+          ./scripts/build_and_notarize.sh 2>&1 | tee build.log
+          # 额外提供一个不带版本号的副本，README 的"直接下载最新版本"链接固定指向它：
+          # https://github.com/<repo>/releases/latest/download/MacCheck-IM.dmg
+          cp dist/MacCheck-IM-*.dmg dist/MacCheck-IM.dmg
+          ls -lh dist/
+
+      - name: Show compiler errors
+        if: failure()
+        run: |
+          # 打包脚本只输出 xcodebuild 的最后一行，失败时重新编译并把错误转成 GitHub 注解（PR 页面可直接看到）
+          xcodebuild -project MacCheck.xcodeproj -scheme MacCheck -configuration Release \
+            -destination 'generic/platform=macOS' -derivedDataPath build_release \
+            ARCHS="arm64 x86_64" ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO > full-build.log 2>&1 || true
+          grep -E "^/.*:[0-9]+:[0-9]+: error: " full-build.log | sort -u | head -40 | \
+            sed -E "s#^${GITHUB_WORKSPACE}/##; s#^([^:]+):([0-9]+):([0-9]+): error: (.*)#::error file=\1,line=\2,col=\3::\4#"
+          grep -E "error:" full-build.log | grep -v "^/" | sort -u | head -20 | sed 's/^/::error::/'
+
+      - name: Upload DMG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MacCheck-IM-dmg
+          path: dist/*.dmg
+          if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          VERSION="${VERSION%-im}"
+          cat > notes.md <<EOF
+          **MacCheck IM ${VERSION}** — version multilingue (FR / EN / 中文) de [andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck), maintenue par [Davina-01](https://github.com/Davina-01).
+
+          - Un seul DMG pour Mac Apple Silicon et Intel (binaire universel).
+          - Signature ad hoc, sans notarisation Apple : au premier lancement, clic droit sur l'app → Ouvrir. Si macOS indique « endommagé » : \`sudo xattr -rd com.apple.quarantine /Applications/MacCheck.app\`
+          - Version assistée par IA, des bugs sont possibles : merci de les signaler dans les [issues](https://github.com/${GITHUB_REPOSITORY}/issues).
+
+          One universal DMG for Apple Silicon and Intel. Ad-hoc signed (not notarized): right-click → Open on first launch. AI-assisted version; please report bugs in the issues.
+
+          通用安装包，同时支持 Apple Silicon 与 Intel。ad-hoc 签名未公证，首次打开请右键 → 打开。本版本由 AI 协助修改，欢迎在 issues 反馈问题。
+          EOF
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" dist/*.dmg --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" dist/*.dmg \
+              --title "MacCheck IM ${VERSION}" \
+              --notes-file notes.md
+          fi

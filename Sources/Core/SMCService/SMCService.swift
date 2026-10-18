@@ -48,9 +48,18 @@ enum SMCService {
                      UInt8(0),UInt8(0),UInt8(0),UInt8(0),UInt8(0),UInt8(0),UInt8(0),UInt8(0))
     }
 
-    // P 核心 / GPU / 电池温度候选键（Apple Silicon，读取存在的取最大）
-    private static let cpuKeys = ["Tp01","Tp05","Tp09","Tp0D","Tp0T","Tp0X","Tp0b","Tp0f","Tp0j","Tp0n"]
-    private static let gpuKeys = ["Tg05","Tg0D","Tg0L","Tg0T"]
+    // P 核心 / GPU / 电池温度候选键（读取存在的取最大）。
+    // Apple Silicon 与 Intel 的 SMC 键名完全不同，两组都尝试，不存在的键读取会直接失败、被忽略。
+    private static let cpuKeys = [
+        // Apple Silicon
+        "Tp01","Tp05","Tp09","Tp0D","Tp0T","Tp0X","Tp0b","Tp0f","Tp0j","Tp0n",
+        // Intel（上游 issue #1：Intel 机型以前读不到任何温度）
+        "TC0P","TC0D","TC0E","TC0F","TC0H","TCXC","TC1C","TC2C","TC3C","TC4C",
+    ]
+    private static let gpuKeys = [
+        "Tg05","Tg0D","Tg0L","Tg0T",
+        "TG0P","TG0D","TG0H","TGDD",
+    ]
     private static let batteryKeys = ["TB1T","TB2T","TB0T"]
 
     private static func fourCC(_ s: String) -> UInt32 {
