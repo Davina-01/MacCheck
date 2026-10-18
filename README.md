@@ -8,7 +8,7 @@
 > [!NOTE]
 > **À propos de cette version.** Il s'agit d'une version modifiée (fork) du projet open source **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** créé par andyhuo520. Elle a été adaptée avec l'aide de l'IA pour proposer une **interface en trois langues (English / Français / 简体中文)** et **la prise en charge de nombreuses dispositions de clavier nationales**, ainsi que des corrections pour plusieurs problèmes signalés sur le projet d'origine. Ces modifications ayant été réalisées avec l'aide de l'IA et n'ayant pas encore été testées sur tous les modèles de Mac, **cette version peut contenir des bugs ou des erreurs. Vos retours sont les bienvenus** : [ouvrez une issue](../../issues) en indiquant votre modèle de Mac, votre version de macOS et ce que vous avez constaté.
 >
-> Ce fork est maintenu par **[INNOMICRO](https://innomicro.fr)** (grossiste basé à Paris, spécialisé dans les écrans de PC et les pièces détachées Apple). Rendez-nous visite sur **[innomicro.fr](https://innomicro.fr)**.
+> Ce fork est maintenu par **[innomicro.fr](https://innomicro.fr)**.
 >
 > Liens open source :
 > - Projet d'origine : [github.com/andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)
@@ -139,7 +139,7 @@ et enregistrez les identifiants de notarisation avec `xcrun notarytool store-cre
 ## Numéros de version
 
 - Version de l'app (affichée dans macOS) : `x.y.z` en chiffres uniquement, comme l'exige Apple. Ce fork poursuit la numérotation d'origine à partir de 1.3.0.
-- Version InnoMicro : tag Git `vX.Y.Z-im`, fichier `MacCheck-IM-X.Y.Z.dmg`, release « MacCheck IM X.Y.Z ».
+- Version innomicro.fr : tag Git `vX.Y.Z-im`, fichier `MacCheck-IM-X.Y.Z.dmg`, release « MacCheck IM X.Y.Z ».
 - Règle : correctif → `1.3.1`, nouvelle fonctionnalité → `1.4.0`, changement majeur → `2.0.0`.
 
 ## Traductions
@@ -174,14 +174,14 @@ docs/
 
 - **Logiciel fourni « en l'état ».** MacCheck est distribué gratuitement, sans aucune garantie, expresse ou implicite, notamment quant à l'exactitude des résultats, à l'absence de bugs ou à l'adéquation à un usage particulier. Cette version modifiée est encore en cours de débogage.
 - **Résultats indicatifs uniquement.** Les résultats ne remplacent ni l'inspection d'un professionnel, ni les vérifications officielles d'Apple (couverture de garantie, verrouillage d'activation, réparations). Certaines anomalies peuvent ne pas être détectées, par exemple une inscription MDM contournée par une méthode inconnue, des pièces non d'origine ou des données falsifiées. Un résultat « normal » ne garantit pas l'état réel de l'appareil.
-- **Pas une certification.** Les rapports générés par MacCheck ne constituent ni un certificat, ni une expertise, ni une garantie délivrés par INNOMICRO ou par les auteurs.
+- **Pas une certification.** Les rapports générés par MacCheck ne constituent ni un certificat, ni une expertise, ni une garantie délivrés par innomicro.fr ou par les auteurs.
 - **Tests matériels.** Certains tests sollicitent la machine : le test de disque écrit puis supprime un fichier temporaire de 1 Go, le test de charge fait chauffer le processeur. Sauvegardez vos données avant utilisation ; vous utilisez ces tests à vos propres risques.
-- **Responsabilité.** Dans toute la mesure permise par la loi applicable, ni l'auteur du projet d'origine, ni les contributeurs, ni INNOMICRO ne sauraient être tenus responsables d'un dommage direct ou indirect résultant de l'utilisation de ce logiciel, notamment d'une décision d'achat ou de vente, d'une perte de données ou d'un dommage matériel. Cette clause ne limite pas les droits dont vous bénéficiez de manière impérative en tant que consommateur.
+- **Responsabilité.** Dans toute la mesure permise par la loi applicable, ni l'auteur du projet d'origine, ni les contributeurs, ni innomicro.fr ne sauraient être tenus responsables d'un dommage direct ou indirect résultant de l'utilisation de ce logiciel, notamment d'une décision d'achat ou de vente, d'une perte de données ou d'un dommage matériel. Cette clause ne limite pas les droits dont vous bénéficiez de manière impérative en tant que consommateur.
 - **Projet d'origine.** L'auteur du projet d'origine (andyhuo520) n'est pas responsable des modifications apportées dans cette version.
 - **Marques.** Ce projet n'est ni affilié à Apple Inc., ni approuvé ou sponsorisé par elle. Apple, Mac, MacBook, macOS, Touch ID et Thunderbolt sont des marques d'Apple Inc. ou de leurs propriétaires respectifs.
-- **Données.** L'application fonctionne entièrement en local ; aucune donnée n'est envoyée à INNOMICRO ni à des tiers.
+- **Données.** L'application fonctionne entièrement en local ; aucune donnée n'est envoyée à innomicro.fr ni à des tiers.
 
 ## Crédits
 
 - Application d'origine : **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** par andyhuo520
-- Version multilingue et multi-dispositions : **[Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)**, maintenue par **[INNOMICRO](https://innomicro.fr)** (grossiste parisien en écrans de PC et pièces détachées Apple), avec l'aide de l'IA
+- Version multilingue et multi-dispositions : **[Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)**, maintenue par **[innomicro.fr](https://innomicro.fr)**, avec l'aide de l'IA

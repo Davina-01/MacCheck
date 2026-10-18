@@ -8,7 +8,7 @@
 > [!NOTE]
 > **关于本版本。** 这是开源项目 **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)**（作者 andyhuo520）的修改版（Fork）。本版本在 AI 协助下修改，新增了 **中 / 英 / 法三种界面语言** 和 **多国键盘布局支持**，并修复了原项目中用户反馈的若干问题。由于改动由 AI 协助完成，且尚未在所有 Mac 机型上实测，**本版本可能存在 bug 或错误，欢迎反馈**：请 [提交 issue](../../issues)，注明你的 Mac 机型、macOS 版本和遇到的现象。
 >
-> 本 Fork 由 **[INNOMICRO](https://innomicro.fr)**（位于巴黎的批发商，主营 PC 屏幕与苹果零件）维护，欢迎访问 **[innomicro.fr](https://innomicro.fr)**。
+> 本 Fork 由 **[innomicro.fr](https://innomicro.fr)** 维护。
 >
 > 开源链接：
 > - 原版项目：[github.com/andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)
@@ -139,7 +139,7 @@ export MACCHECK_NOTARY_PROFILE="maccheck-notary"
 ## 版本号
 
 - App 版本号（macOS 中显示）：只用数字 `x.y.z`，这是 Apple 的要求。本 Fork 在原项目基础上从 1.3.0 继续编号。
-- InnoMicro 发布版：Git 标签 `vX.Y.Z-im`，安装包 `MacCheck-IM-X.Y.Z.dmg`，Release 标题「MacCheck IM X.Y.Z」。
+- innomicro.fr 发布版：Git 标签 `vX.Y.Z-im`，安装包 `MacCheck-IM-X.Y.Z.dmg`，Release 标题「MacCheck IM X.Y.Z」。
 - 规则：修 bug → `1.3.1`，加功能 → `1.4.0`，重大不兼容改动 → `2.0.0`。
 
 ## 翻译
@@ -174,14 +174,14 @@ docs/
 
 - **按"现状"提供。** MacCheck 免费发布，不提供任何明示或默示的担保，包括但不限于检测结果的准确性、无错误或适用于特定用途。本修改版仍在调试中。
 - **结果仅供参考。** 检测结果不能替代专业人员的检测，也不能替代 Apple 官方的查询（保修状态、激活锁、维修记录等）。部分问题可能无法被检测到，例如用未知方式绕过的 MDM 监管、非原装零件或被篡改的数据。检测结果"正常"并不代表设备的实际状况一定良好。
-- **不构成认证。** MacCheck 生成的报告不构成 INNOMICRO 或作者出具的证书、鉴定或质保。
+- **不构成认证。** MacCheck 生成的报告不构成 innomicro.fr 或作者出具的证书、鉴定或质保。
 - **硬件测试。** 部分测试会对机器施加负载：硬盘测速会写入并删除一个 1 GB 的临时文件，性能压测会使处理器发热。使用前请备份数据，进行这些测试的风险由使用者自行承担。
-- **责任限制。** 在适用法律允许的最大范围内，原项目作者、贡献者及 INNOMICRO 均不对因使用本软件而产生的任何直接或间接损失承担责任，包括但不限于买卖决定、数据丢失或设备损坏。本条款不限制您作为消费者依法享有的强制性权利。
+- **责任限制。** 在适用法律允许的最大范围内，原项目作者、贡献者及 innomicro.fr 均不对因使用本软件而产生的任何直接或间接损失承担责任，包括但不限于买卖决定、数据丢失或设备损坏。本条款不限制您作为消费者依法享有的强制性权利。
 - **原项目。** 原项目作者（andyhuo520）不对本版本中的修改负责。
 - **商标。** 本项目与 Apple Inc. 无任何关联，也未获其认可或赞助。Apple、Mac、MacBook、macOS、Touch ID、Thunderbolt 是 Apple Inc. 或其各自所有者的商标。
-- **数据。** 本 App 完全在本地运行，不会向 INNOMICRO 或任何第三方发送数据。
+- **数据。** 本 App 完全在本地运行，不会向 innomicro.fr 或任何第三方发送数据。
 
 ## 致谢
 
 - 原版 App：**[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)**，作者 andyhuo520
-- 多语言与多键盘布局版本：**[Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)**，由 **[INNOMICRO](https://innomicro.fr)**（位于巴黎的 PC 屏幕与苹果零件批发商）在 AI 协助下维护
+- 多语言与多键盘布局版本：**[Davina-01/MacCheck](https://github.com/Davina-01/MacCheck)**，由 **[innomicro.fr](https://innomicro.fr)** 在 AI 协助下维护
