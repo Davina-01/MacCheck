@@ -39,6 +39,9 @@ jobs:
         run: |
           set -o pipefail
           ./scripts/build_and_notarize.sh 2>&1 | tee build.log
+          # 额外提供一个不带版本号的副本，README 的"直接下载最新版本"链接固定指向它：
+          # https://github.com/<repo>/releases/latest/download/MacCheck-IM.dmg
+          cp dist/MacCheck-IM-*.dmg dist/MacCheck-IM.dmg
           ls -lh dist/
 
       - name: Show compiler errors

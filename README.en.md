@@ -2,8 +2,11 @@
 
 # MacCheck
 
-> [!WARNING]
-> **Work in progress: this version still has many bugs and is being debugged.** Some features may not work or may crash the app. Please report any problem in the [issues](../../issues).
+<p align="center">
+  <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=apple&label=Download%20for%20macOS&color=0071e3" alt="Download MacCheck for macOS"></a>
+</p>
+
+<p align="center"><b>⬇️ <a href="https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg">Download the latest version (DMG)</a> · macOS 14+ · Apple Silicon & Intel · <a href="https://github.com/Davina-01/MacCheck/releases">All releases</a></b></p>
 
 > [!NOTE]
 > **About this version.** This is a modified fork of the open-source project **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** by andyhuo520. It was adapted with the help of AI to add a **three-language interface (English / Français / 简体中文)** and **support for many national keyboard layouts**, plus fixes for several issues reported upstream. Because these changes were AI-assisted and have not yet been tested on every Mac model, **this version may contain bugs or mistakes. Feedback is very welcome**: please [open an issue](../../issues) describing your Mac model, macOS version and what you saw.
@@ -20,9 +23,9 @@
 
 MacCheck is a local macOS inspection tool for buying and selling used Macs, in-store checks and self-diagnosis. It automatically reads hardware specs, battery, storage, network, security and port information, and provides interactive tests for the keyboard, display, audio, microphone, camera, trackpad, disk speed and more. Results can be exported as a PDF or PNG report.
 
-> Privacy: MacCheck runs entirely on your Mac and never uploads serial numbers, results or reports. Screenshots in this README come from real devices (taken with the original Chinese interface) with serial numbers masked.
+> Privacy: MacCheck runs entirely on your Mac and never uploads serial numbers, results or reports. Screenshots in this README come from a real Mac, with the serial number masked.
 
-![MacCheck overview](docs/assets/overview-demo.png)
+![MacCheck overview](docs/assets/en-overview.png)
 
 ## What's new in this fork (v1.0.0)
 
@@ -56,7 +59,7 @@ Also fixed: the battery cycle-count tamper check never appeared in the report.
 - One-click PDF / PNG report export and saved history for later comparison
 - Light, dark or system appearance
 
-![MacCheck hardware specs](docs/assets/hardware-specs-real.png)
+![MacCheck hardware specs](docs/assets/en-hardware-specs.png)
 
 ## Requirements
 
@@ -68,7 +71,7 @@ Also fixed: the battery cycle-count tamper check never appeared in the report.
 
 ## Installation
 
-1. Download `MacCheck-IM-x.y.z.dmg` from the **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)** page. The same file works on Apple Silicon and Intel Macs.
+1. Download **[MacCheck-IM.dmg](https://github.com/Davina-01/MacCheck/releases/latest/download/MacCheck-IM.dmg)** (latest version) or pick a version on the **[Releases](https://github.com/Davina-01/MacCheck/releases/latest)** page. The same file works on Apple Silicon and Intel Macs.
 2. Open the DMG and drag `MacCheck.app` into `Applications`.
 3. Permissions (camera, microphone, Bluetooth) are requested when needed.
 
@@ -88,9 +91,9 @@ sudo xattr -rd com.apple.quarantine /Applications/MacCheck.app
 4. Click **Save to history** to keep a snapshot of this inspection.
 5. Click **Export report** and choose PNG or PDF.
 
-![MacCheck security checks](docs/assets/security-real.png)
+![MacCheck security checks](docs/assets/en-security.png)
 
-![MacCheck keyboard test](docs/assets/testing-demo.png)
+![MacCheck keyboard test](docs/assets/en-keyboard.png)
 
 ## Build from source
 

@@ -163,6 +163,22 @@ final class AppModel: ObservableObject {
         item.resultIDs.compactMap { result(id: $0) }
     }
 
+    /// 概览行显示的代表性结论：取该分类中最严重的一项。
+    /// 以前直接取第一项，"安全与锁定"一栏因此总是显示序列号核验（还会把序列号露在概览页上），
+    /// 即使真正的问题是激活锁。
+    func headlineResult(for item: SidebarItem) -> CheckResult? {
+        func rank(_ s: CheckStatus) -> Int {
+            switch s {
+            case .redFlag: return 4
+            case .warning: return 3
+            case .pass: return 2
+            case .skipped: return 1
+            case .unsupported: return 0
+            }
+        }
+        return results(for: item).max { rank($0.status) < rank($1.status) }
+    }
+
     /// 分类聚合状态：取该分类下最严重的一项；无结果返回 nil（交互测试尚未进行）。
     func status(for item: SidebarItem) -> CheckStatus? {
         let statuses = results(for: item).map(\.status)
