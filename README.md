@@ -16,7 +16,7 @@
 >
 > Les résultats sont indicatifs et ne constituent pas une garantie : voir l'**Avertissement et limitation de responsabilité** en bas de page.
 >
-> Tout le mérite de l'application d'origine revient à son auteur. Le dépôt d'origine ne contient pas de fichier de licence ; si vous souhaitez redistribuer cette application à des fins commerciales, contactez d'abord l'auteur d'origine.
+> Merci à andyhuo520 d'avoir publié le projet d'origine en open source. Le dépôt d'origine ne contient pas de fichier de licence ; si vous souhaitez redistribuer cette application à des fins commerciales, contactez d'abord l'auteur d'origine.
 
 MacCheck est un outil macOS local pour contrôler un Mac d'occasion, à l'achat, à la vente, en boutique ou en autodiagnostic. Il lit automatiquement les caractéristiques matérielles, la batterie, le stockage, le réseau, la sécurité et les ports, et propose des tests interactifs pour le clavier, l'écran, le son, le micro, la caméra, le trackpad, la vitesse du disque, etc. Les résultats s'exportent en rapport PDF ou PNG.
 
