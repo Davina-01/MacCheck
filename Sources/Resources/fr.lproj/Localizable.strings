@@ -451,3 +451,5 @@
 "原版开源项目" = "Projet open source d'origine";
 "本修改版（开源）" = "Cette version modifiée (open source)";
 "本版本仍在调试中，可能存在 bug，欢迎在 GitHub 反馈问题。原版的全部功劳归原作者所有。" = "Cette version est encore en cours de débogage et peut contenir des bugs ; vos retours sur GitHub sont les bienvenus. Tout le mérite de l'application d'origine revient à son auteur.";
+"退出：长按 esc 1.2 秒结束测试并保存 · ⌘Q 直接退出 MacCheck" = "Quitter : maintenez esc 1,2 s pour terminer et enregistrer · ⌘Q quitte MacCheck";
+"退出：Esc 结束测试并保存 · ⌘Q 直接退出 MacCheck" = "Quitter : Échap pour terminer et enregistrer · ⌘Q quitte MacCheck";

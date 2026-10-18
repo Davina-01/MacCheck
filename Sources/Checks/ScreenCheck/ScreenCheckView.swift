@@ -63,6 +63,8 @@ struct ScreenCheckView: View {
             Text(L("第 {0} / {1} 项 · 点按屏幕或按空格切换下一项 · 按 F 标记异常 · 按 H 隐藏/显示此提示 · Esc 结束", model.currentIndex + 1, model.stages.count))
                 .font(.system(size: 12))
                 .opacity(0.75)
+            Label(L("退出：Esc 结束测试并保存 · ⌘Q 直接退出 MacCheck"), systemImage: "escape")
+                .font(.system(size: 12, weight: .semibold))
             HStack(spacing: 12) {
                 Button(L("标记此画面异常")) { model.flagCurrent() }
                 Button(L("隐藏提示 (H)")) {
