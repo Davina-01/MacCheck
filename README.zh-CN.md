@@ -11,8 +11,6 @@
 > [!NOTE]
 > **关于本版本。** 这是开源项目 **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)**（作者 andyhuo520）的修改版（Fork）。本版本在 AI 协助下修改，新增了 **中 / 英 / 法三种界面语言** 和 **多国键盘布局支持**，并修复了原项目中用户反馈的若干问题。由于改动由 AI 协助完成，且尚未在所有 Mac 机型上实测，**本版本可能存在 bug 或错误，欢迎反馈**：请 [提交 issue](../../issues)，注明你的 Mac 机型、macOS 版本和遇到的现象。
 >
-> 已知问题：见 [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md)。
->
 > 本 Fork 由 **[innomicro.fr](https://innomicro.fr)** 维护。
 >
 > 开源链接：

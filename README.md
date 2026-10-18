@@ -11,8 +11,6 @@
 > [!NOTE]
 > **À propos de cette version.** Il s'agit d'une version modifiée (fork) du projet open source **[andyhuo520/MacCheck](https://github.com/andyhuo520/MacCheck)** créé par andyhuo520. Elle a été adaptée avec l'aide de l'IA pour proposer une **interface en trois langues (English / Français / 简体中文)** et **la prise en charge de nombreuses dispositions de clavier nationales**, ainsi que des corrections pour plusieurs problèmes signalés sur le projet d'origine. Ces modifications ayant été réalisées avec l'aide de l'IA et n'ayant pas encore été testées sur tous les modèles de Mac, **cette version peut contenir des bugs ou des erreurs. Vos retours sont les bienvenus** : [ouvrez une issue](../../issues) en indiquant votre modèle de Mac, votre version de macOS et ce que vous avez constaté.
 >
-> Problèmes connus : voir [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md).
->
 > Ce fork est maintenu par **[innomicro.fr](https://innomicro.fr)**.
 >
 > Liens open source :
