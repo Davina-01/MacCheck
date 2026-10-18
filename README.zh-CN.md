@@ -3,7 +3,7 @@
 # MacCheck 验机宝
 
 <p align="center">
-  <a href="https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=apple&label=%E4%B8%8B%E8%BD%BD%20macOS%20%E7%89%88&color=0071e3" alt="下载 MacCheck macOS 版"></a>
+  <a href="https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg"><img src="https://img.shields.io/github/v/release/Davina-01/MacCheck?style=for-the-badge&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI%2BPHBhdGggZD0iTTEyIDN2MTIiLz48cGF0aCBkPSJNNyAxMGw1IDUgNS01Ii8%2BPHBhdGggZD0iTTUgMjBoMTQiLz48L3N2Zz4%3D&label=%E4%B8%8B%E8%BD%BD%20macOS%20%E7%89%88&color=0071e3" alt="下载 MacCheck macOS 版"></a>
 </p>
 
 <p align="center"><b>⬇️ <a href="https://github.com/Davina-01/MacCheck/releases/download/v1.0.0-im/MacCheck-IM-1.0.0.dmg">直接下载 MacCheck IM 1.0.0（DMG）</a> · macOS 14+ · 支持 Apple Silicon 与 Intel · <a href="https://github.com/Davina-01/MacCheck/releases">全部版本</a></b></p>
